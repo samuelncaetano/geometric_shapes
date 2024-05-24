@@ -1,0 +1,15 @@
+@startuml use_case_check_relationship_between_point_and_geometric_shape
+
+left to right direction
+skinparam packageStyle rectangle
+actor Usuário as User
+rectangle "Verificar Relação entre Ponto e Forma Geométrica" {
+    User -- (Selecionar opção de verificar relação)
+    (Selecionar opção de verificar relação) --> (Exibir lista de formas disponíveis)
+    (Exibir lista de formas disponíveis) --> (Selecionar forma geométrica)
+    (Selecionar forma geométrica) --> (Fornecer ponto)
+    (Fornecer ponto) --> (Verificar relação)
+    (Verificar relação) --> (Exibir resultado)
+}
+
+@enduml

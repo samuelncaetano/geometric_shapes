@@ -1,0 +1,15 @@
+@startuml use_case_create_shapes
+
+left to right direction
+skinparam packageStyle rectangle
+actor Usuário as User
+rectangle "Criar Forma Geométrica" {
+    User -- (Selecionar opção de criar forma geométrica)
+    (Selecionar opção de criar forma geométrica) --> (Exibir opções disponíveis)
+    (Exibir opções disponíveis) --> (Escolher forma geométrica)
+    (Escolher forma geométrica) --> (Solicitar parâmetros)
+    (Solicitar parâmetros) --> (Criar forma geométrica)
+    (Criar forma geométrica) --> (Armazenar temporariamente)
+    (Armazenar temporariamente) --> (Exibir lista de formas disponíveis)
+}
+@enduml

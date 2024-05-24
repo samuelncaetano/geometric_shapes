@@ -1,0 +1,13 @@
+@startuml use_case_check_relationship_between_point_and_line
+
+left to right direction
+skinparam packageStyle rectangle
+actor Usuário as User
+rectangle "Verificar Relação entre Ponto e Reta" {
+    User -- (Selecionar opção de verificar relação)
+    (Selecionar opção de verificar relação) --> (Fornecer ponto e segmento de reta)
+    (Fornecer ponto e segmento de reta) --> (Verificar relação)
+    (Verificar relação) --> (Exibir resultado)
+}
+
+@enduml
