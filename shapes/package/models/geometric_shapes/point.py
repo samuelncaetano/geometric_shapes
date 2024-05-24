@@ -12,5 +12,5 @@ class Point(GeometricShape):
     def get_y(self):
         return self.__y
 
-    def calculate_area(self):
+    def calcular_area(self):
         return 0
