@@ -1,4 +1,5 @@
 # pylint: disable = E0110, E0401
+from unittest.mock import patch
 import pytest
 from shapes.package import Point
 
@@ -75,3 +76,15 @@ def test_str_ponto(origem, ponto):
     message_ponto = "Ponto(3, 4)"
     assert str(origem) == message_origem
     assert str(ponto) == message_ponto
+
+
+def test_criar_ponto():
+    user_input = "3.0 4.0\n"
+    expected_x = 3.0
+    expected_y = 4.0
+
+    with patch("builtins.input", return_value=user_input):
+        ponto = Point.criar_ponto()
+
+        assert ponto.get_x() == expected_x
+        assert ponto.get_y() == expected_y
