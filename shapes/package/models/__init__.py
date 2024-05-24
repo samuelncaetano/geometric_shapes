@@ -6,4 +6,4 @@ from .geometric_shapes import (
     Triangle,
 )
 
-from .geometry import Geometry
+from .geometric_shape import GeometricShape
