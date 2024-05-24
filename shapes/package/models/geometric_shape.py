@@ -3,17 +3,29 @@ from abc import ABC, abstractmethod
 
 class GeometricShape(ABC):
     @abstractmethod
-    def calculate_area(self):
+    def calcular_area(self):
         pass
 
     # @abstractmethod
-    # def calculate_perimeter(self):
+    # def calcular_perimetro(self):
     #     pass
 
     # @abstractmethod
-    # def contains_point(self):
+    # def distancia_origem(self):
     #     pass
 
     # @abstractmethod
-    # def to_move(self):
+    # def distancia_pontos(self):
+    #     pass
+
+    # @abstractmethod
+    # def contem_ponto(self, ponto):
+    #     pass
+
+    # @abstractmethod
+    # def mover(self):
+    #     pass
+
+    # @abstractmethod
+    # def __str__(self):
     #     pass
