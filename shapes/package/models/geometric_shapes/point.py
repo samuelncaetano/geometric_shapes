@@ -34,3 +34,14 @@ class Point(GeometricShape):
 
     def __str__(self):
         return f"Ponto({self.__x}, {self.__y})"
+
+    @staticmethod
+    def criar_ponto():
+        x, y = map(
+            float,
+            input(
+                "Digite as coordenadas x e y do ponto separadas por espaço: "
+            ).split(),
+        )
+        print("Ponto adicionado com sucesso.")
+        return Point(x, y)
