@@ -66,5 +66,4 @@ class LineSegment(GeometricShape):
         print("Para adicionar um segmento de reta, você precisa de dois pontos.")
         ponto1 = Point.criar_ponto()
         ponto2 = Point.criar_ponto()
-        print("Segmento de reta adicionado com sucesso.")
         return LineSegment(ponto1, ponto2)
