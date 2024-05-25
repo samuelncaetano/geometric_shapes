@@ -2,8 +2,7 @@
 from math import sqrt
 from unittest.mock import patch
 import pytest
-from shapes.package import Point
-from shapes.package import LineSegment
+from shapes.package import LineSegment, Point
 
 
 @pytest.fixture
