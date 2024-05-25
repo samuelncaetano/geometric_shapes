@@ -2,7 +2,7 @@
 from math import pi
 from unittest.mock import patch
 import pytest
-from shapes.package.models import Point, LineSegment, Circle
+from shapes.package.models import Point, LineSegment, Circle, Rectangle
 from shapes.package.controllers import GeometricShapeController
 from shapes.package.repository.in_memory_repository import InMemoryRepository
 
@@ -30,6 +30,11 @@ def reta():
 @pytest.fixture
 def circulo():
     return Circle(Point(0, 0), 4)
+
+
+@pytest.fixture
+def retangulo():
+    return Rectangle(Point(0, 0), 4, 4)
 
 
 def test_instanciar_controller(controller):
@@ -172,6 +177,70 @@ def test_mover_circulo(controller, circulo):
     assert item.get_centro().get_y() == 4
 
 
+# Circle
+def test_calcular_area_retangulo(controller, retangulo):
+    area = 4 * 4
+    controller.adicionar_forma_geometrica(retangulo)
+    assert controller.calcular_area(0) == area
+
+
+def test_calcular_perimetro_retangulo(controller, retangulo):
+    perimetro = 2 * (4 + 4)
+    controller.adicionar_forma_geometrica(retangulo)
+    assert controller.calcular_perimetro(0) == perimetro
+
+
+def test_distancia_origem_retangulo(controller, retangulo):
+    ponto_superior_esquerdo = Point(-2, 2)
+    ponto_inferior_direito = Point(2, -2)
+    origem = min(
+        ponto_inferior_direito.distancia_origem(),
+        ponto_superior_esquerdo.distancia_origem(),
+    )
+    controller.adicionar_forma_geometrica(retangulo)
+    assert controller.distancia_origem(0) == origem
+
+
+def test_distancia_pontos_retangulo(controller, retangulo):
+    ponto = Point(1, 1)
+    ponto_superior_esquerdo = Point(-2, 2)
+    ponto_inferior_direito = Point(2, -2)
+    distancias = [
+        ponto_inferior_direito.distancia_pontos(ponto),
+        ponto_superior_esquerdo.distancia_pontos(ponto),
+        ponto.distancia_pontos(
+            Point(
+                ponto_inferior_direito.get_x(),
+                ponto_superior_esquerdo.get_y(),
+            )
+        ),
+        ponto.distancia_pontos(
+            Point(
+                ponto_superior_esquerdo.get_x(),
+                ponto_inferior_direito.get_y(),
+            )
+        ),
+    ]
+    controller.adicionar_forma_geometrica(retangulo)
+    assert controller.distancia_pontos(0, ponto) == min(distancias)
+
+
+def test_contem_ponto_retangulo(controller, retangulo):
+    true = Point(2, 2)
+    false = Point(5, 5)
+    controller.adicionar_forma_geometrica(retangulo)
+    assert controller.contem_ponto(0, true) is True
+    assert controller.contem_ponto(0, false) is False
+
+
+def test_mover_retangulo(controller, retangulo):
+    controller.adicionar_forma_geometrica(retangulo)
+    controller.mover_formas(0, Point(4, 4))
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_centro().get_x() == 4
+    assert item.get_centro().get_y() == 4
+
+
 # Adicionar formas no controller
 def test_adicionar_ponto(controller):
     user_input = ["0 0"]
@@ -201,3 +270,14 @@ def test_adicionar_circulo(controller):
     assert item.get_centro().get_x() == 0
     assert item.get_centro().get_y() == 0
     assert item.get_raio() == 4
+
+
+def test_adicionar_retangulo(controller):
+    user_input = ["0 0", "4", "4"]
+    with patch("builtins.input", side_effect=user_input):
+        controller.adicionar_retangulo()
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_centro().get_x() == 0
+    assert item.get_centro().get_y() == 0
+    assert item.get_largura() == 4
+    assert item.get_altura() == 4
