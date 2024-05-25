@@ -19,7 +19,7 @@ def test_instanciar_ponto(origem, ponto):
     assert isinstance(ponto, Point)
 
 
-def test_obter_coordenadas(origem, ponto):
+def test_obter_coordenadas_ponto(origem, ponto):
     assert origem.get_x() == 0
     assert origem.get_y() == 0
     assert ponto.get_x() == 3
@@ -36,12 +36,12 @@ def test_calcular_perimetro_ponto(origem, ponto):
     assert ponto.calcular_perimetro() == 0
 
 
-def test_distancia_origem(origem, ponto):
+def test_distancia_origem_ponto(origem, ponto):
     assert origem.distancia_origem() == 0
     assert ponto.distancia_origem() == 5
 
 
-def test_distancia_pontos(origem, ponto):
+def test_distancia_pontos_ponto(origem, ponto):
     origem = Point(0, 0)
     assert origem.distancia_pontos(origem) == 0
     assert ponto.distancia_pontos(origem) == 5
@@ -80,11 +80,9 @@ def test_str_ponto(origem, ponto):
 
 def test_criar_ponto():
     user_input = "3.0 4.0\n"
-    expected_x = 3.0
-    expected_y = 4.0
 
     with patch("builtins.input", return_value=user_input):
         ponto = Point.criar_ponto()
 
-        assert ponto.get_x() == expected_x
-        assert ponto.get_y() == expected_y
+        assert ponto.get_x() == 3.0
+        assert ponto.get_y() == 4.0
