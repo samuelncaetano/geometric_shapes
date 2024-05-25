@@ -1,5 +1,5 @@
 # pylint: disable=R1710
-from shapes.package.models import Point, LineSegment
+from shapes.package.models import Point, LineSegment, Circle
 
 
 class GeometricShapeController:
@@ -61,3 +61,7 @@ class GeometricShapeController:
     def adicionar_segmento_de_reta(self):
         reta = LineSegment.criar_segmento_de_reta()
         self.adicionar_forma_geometrica(reta)
+
+    def adicionar_circulo(self):
+        circulo = Circle.criar_circulo()
+        self.adicionar_forma_geometrica(circulo)
