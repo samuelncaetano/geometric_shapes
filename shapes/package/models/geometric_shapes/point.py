@@ -43,5 +43,4 @@ class Point(GeometricShape):
                 "Digite as coordenadas x e y do ponto separadas por espaço: "
             ).split(),
         )
-        print("Ponto adicionado com sucesso.")
         return Point(x, y)
