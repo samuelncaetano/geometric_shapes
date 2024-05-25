@@ -1,13 +1,19 @@
 # pylint: disable = E0110, E0401
 from unittest.mock import patch
 import pytest
-from shapes.package import GeometricShapeController
-from shapes.package import Point, LineSegment
+from shapes.package.models import Point, LineSegment
+from shapes.package.controllers import GeometricShapeController
+from shapes.package.repository.in_memory_repository import InMemoryRepository
 
 
 @pytest.fixture
-def controller():
-    return GeometricShapeController()
+def repository():
+    return InMemoryRepository()
+
+
+@pytest.fixture
+def controller(repository):
+    return GeometricShapeController(repository)
 
 
 @pytest.fixture
@@ -24,18 +30,15 @@ def test_instanciar_controller(controller):
     assert isinstance(controller, GeometricShapeController)
 
 
-def test_adicionar_forma_geometrica(controller, ponto):
+def test_adicionar_forma_geometrica(controller, ponto, repository):
     controller.adicionar_forma_geometrica(ponto)
-    assert ponto in controller._GeometricShapeController__geometric_shapes
+    assert ponto in repository.list_all()
 
 
 def test_listar_formas_geometricas_sem_formas(controller, capsys):
     controller.listar_formas_geometricas()
     captured = capsys.readouterr()
-    assert (
-        captured.out
-        == "Nenhuma forma geométrica cadastrada.\n### Formas Geométricas ###\n"
-    )
+    assert captured.out == "Nenhuma forma geométrica cadastrada.\n"
 
 
 def test_listar_formas_geometricas_com_formas(controller, ponto, capsys):
@@ -78,8 +81,9 @@ def test_contem_ponto_ponto(controller, ponto):
 def test_mover_ponto(controller, ponto):
     controller.adicionar_forma_geometrica(ponto)
     controller.mover_formas(0, Point(2, 2))
-    assert controller._GeometricShapeController__geometric_shapes[0].get_x() == 2
-    assert controller._GeometricShapeController__geometric_shapes[0].get_y() == 2
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_x() == 2
+    assert item.get_y() == 2
 
 
 # LineSegment
@@ -114,22 +118,11 @@ def test_contem_ponto_reta(controller, reta):
 def test_mover_reta(controller, reta):
     controller.adicionar_forma_geometrica(reta)
     controller.mover_segmento_de_reta(0, Point(2, 2), Point(5, 5))
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto1().get_x()
-        == 2
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto1().get_y()
-        == 2
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto2().get_x()
-        == 5
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto2().get_y()
-        == 5
-    )
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_ponto1().get_x() == 2
+    assert item.get_ponto1().get_y() == 2
+    assert item.get_ponto2().get_x() == 5
+    assert item.get_ponto2().get_y() == 5
 
 
 # Adicionar formas no controller
@@ -137,29 +130,17 @@ def test_adicionar_ponto(controller):
     user_input = ["0 0"]
     with patch("builtins.input", side_effect=user_input):
         controller.adicionar_ponto()
-    assert len(controller._GeometricShapeController__geometric_shapes) == 1
-    assert controller._GeometricShapeController__geometric_shapes[0].get_x() == 0
-    assert controller._GeometricShapeController__geometric_shapes[0].get_y() == 0
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_x() == 0
+    assert item.get_y() == 0
 
 
 def test_adicionar_reta(controller):
     user_input = ["0 0", "2 2"]
     with patch("builtins.input", side_effect=user_input):
         controller.adicionar_segmento_de_reta()
-    assert len(controller._GeometricShapeController__geometric_shapes) == 1
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto1().get_x()
-        == 0
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto1().get_y()
-        == 0
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto2().get_x()
-        == 2
-    )
-    assert (
-        controller._GeometricShapeController__geometric_shapes[0].get_ponto2().get_y()
-        == 2
-    )
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_ponto1().get_x() == 0
+    assert item.get_ponto1().get_y() == 0
+    assert item.get_ponto2().get_x() == 2
+    assert item.get_ponto2().get_y() == 2
