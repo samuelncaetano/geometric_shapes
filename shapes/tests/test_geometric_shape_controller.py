@@ -1,7 +1,8 @@
 # pylint: disable = E0110, E0401
+from math import pi
 from unittest.mock import patch
 import pytest
-from shapes.package.models import Point, LineSegment
+from shapes.package.models import Point, LineSegment, Circle
 from shapes.package.controllers import GeometricShapeController
 from shapes.package.repository.in_memory_repository import InMemoryRepository
 
@@ -24,6 +25,11 @@ def ponto():
 @pytest.fixture
 def reta():
     return LineSegment(Point(1, 1), Point(4, 4))
+
+
+@pytest.fixture
+def circulo():
+    return Circle(Point(0, 0), 4)
 
 
 def test_instanciar_controller(controller):
@@ -50,7 +56,7 @@ def test_listar_formas_geometricas_com_formas(controller, ponto, capsys):
 
 
 # Usar os métodos das classes no controller
-# POINT
+# Point
 def test_calcular_area_ponto(controller, ponto):
     controller.adicionar_forma_geometrica(ponto)
     assert controller.calcular_area(0) == 0
@@ -125,6 +131,47 @@ def test_mover_reta(controller, reta):
     assert item.get_ponto2().get_y() == 5
 
 
+# Circle
+def test_calcular_area_circulo(controller, circulo):
+    area = pi * 4**2
+    controller.adicionar_forma_geometrica(circulo)
+    assert controller.calcular_area(0) == area
+
+
+def test_calcular_perimetro_circulo(controller, circulo):
+    perimetro = 2 * pi * 4
+    controller.adicionar_forma_geometrica(circulo)
+    assert controller.calcular_perimetro(0) == perimetro
+
+
+def test_distancia_origem_circulo(controller, circulo):
+    controller.adicionar_forma_geometrica(circulo)
+    assert controller.distancia_origem(0) == 0
+
+
+def test_distancia_pontos_circulo(controller, circulo):
+    ponto = Point(1, 1)
+    distancia = abs(circulo.get_centro().distancia_pontos(ponto) - circulo.get_raio())
+    controller.adicionar_forma_geometrica(circulo)
+    assert controller.distancia_pontos(0, ponto) == distancia
+
+
+def test_contem_ponto_circulo(controller, circulo):
+    true = Point(2, 2)
+    false = Point(5, 5)
+    controller.adicionar_forma_geometrica(circulo)
+    assert controller.contem_ponto(0, true) is True
+    assert controller.contem_ponto(0, false) is False
+
+
+def test_mover_circulo(controller, circulo):
+    controller.adicionar_forma_geometrica(circulo)
+    controller.mover_formas(0, Point(4, 4))
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_centro().get_x() == 4
+    assert item.get_centro().get_y() == 4
+
+
 # Adicionar formas no controller
 def test_adicionar_ponto(controller):
     user_input = ["0 0"]
@@ -144,3 +191,13 @@ def test_adicionar_reta(controller):
     assert item.get_ponto1().get_y() == 0
     assert item.get_ponto2().get_x() == 2
     assert item.get_ponto2().get_y() == 2
+
+
+def test_adicionar_circulo(controller):
+    user_input = ["0 0", "4"]
+    with patch("builtins.input", side_effect=user_input):
+        controller.adicionar_circulo()
+    item = controller._GeometricShapeController__repository.get(0)
+    assert item.get_centro().get_x() == 0
+    assert item.get_centro().get_y() == 0
+    assert item.get_raio() == 4
