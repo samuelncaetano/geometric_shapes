@@ -23,43 +23,36 @@ class GeometricShapeController:
         forma = self.__repository.get(index)
         if forma:
             return forma.calcular_area()
-        return None
 
     def calcular_perimetro(self, index):
         forma = self.__repository.get(index)
         if forma:
             return forma.calcular_perimetro()
-        return None
 
     def distancia_origem(self, index):
         forma = self.__repository.get(index)
         if forma:
             return forma.distancia_origem()
-        return None
 
     def distancia_pontos(self, index, ponto):
         forma = self.__repository.get(index)
         if forma:
             return forma.distancia_pontos(ponto)
-        return None
 
     def contem_ponto(self, index, ponto):
         forma = self.__repository.get(index)
         if forma:
             return forma.contem_ponto(ponto)
-        return None
 
     def mover_formas(self, index, novo_ponto):
         forma = self.__repository.get(index)
         if forma:
             return forma.mover(novo_ponto)
-        return None
 
     def mover_segmento_de_reta(self, index, novo_ponto1, novo_ponto2):
         forma = self.__repository.get(index)
         if forma:
             return forma.mover(novo_ponto1, novo_ponto2)
-        return None
 
     def adicionar_ponto(self):
         ponto = Point.criar_ponto()
