@@ -4,14 +4,13 @@ from shapes.package.models.geometric_shapes.point import Point
 
 
 class Triangle(GeometricShape):
-    def __init__(self, centro, ponto1, ponto2, ponto3):
-        self.__centro = centro
-        self.__ponto1 = ponto1
-        self.__ponto2 = ponto2
-        self.__ponto3 = ponto3
-
-    def get_centro(self):
-        return self.__centro
+    def __init__(self, ponto1, ponto2, ponto3):
+        if self.formar_triangulo(ponto1, ponto2, ponto3):
+            self.__ponto1 = ponto1
+            self.__ponto2 = ponto2
+            self.__ponto3 = ponto3
+        else:
+            raise ValueError("Os pontos fornecidos não formam um triângulo válido.")
 
     def get_ponto1(self):
         return self.__ponto1
@@ -21,6 +20,13 @@ class Triangle(GeometricShape):
 
     def get_ponto3(self):
         return self.__ponto3
+
+    def calcular_centro(self):
+        x = (self.__ponto1.get_x() + self.__ponto2.get_x() + self.__ponto3.get_x()) / 3
+        y = (self.__ponto1.get_y() + self.__ponto2.get_y() + self.__ponto3.get_y()) / 3
+        centro_x = round(x, 1)
+        centro_y = round(y, 1)
+        return Point(centro_x, centro_y)
 
     def calcular_area(self):
         x1, y1 = self.__ponto1.get_x(), self.__ponto1.get_y()
@@ -67,23 +73,34 @@ class Triangle(GeometricShape):
         return a == (a1 + a2 + a3)
 
     def mover(self, novo_ponto):
-        dx = novo_ponto.get_x() - self.__centro.get_x()
-        dy = novo_ponto.get_y() - self.__centro.get_y()
-        self.__centro = novo_ponto
+        dx = novo_ponto.get_x() - self.calcular_centro().get_x()
+        dy = novo_ponto.get_y() - self.calcular_centro().get_y()
         self.__ponto1 = Point(self.__ponto1.get_x() + dx, self.__ponto1.get_y() + dy)
         self.__ponto2 = Point(self.__ponto2.get_x() + dx, self.__ponto2.get_y() + dy)
         self.__ponto3 = Point(self.__ponto3.get_x() + dx, self.__ponto3.get_y() + dy)
 
     def __str__(self):
-        return f"Triângulo(Centro: {self.__centro}, Ponto1: {self.__ponto1}, Ponto2: {self.__ponto2}, Ponto3: {self.__ponto3})"
+        return f"Triângulo(Centro: {self.calcular_centro()}, Ponto1: {self.__ponto1}, Ponto2: {self.__ponto2}, Ponto3: {self.__ponto3})"
+
+    @staticmethod
+    def formar_triangulo(ponto1, ponto2, ponto3):
+        def calcular_area(p1, p2, p3):
+            return abs(
+                (
+                    p1.get_x() * (p2.get_y() - p3.get_y())
+                    + p2.get_x() * (p3.get_y() - p1.get_y())
+                    + p3.get_x() * (p1.get_y() - p2.get_y())
+                )
+                / 2
+            )
+
+        area_total = calcular_area(ponto1, ponto2, ponto3)
+        return area_total > 0
 
     @staticmethod
     def criar_triangulo():
-        print("Digite as coordenadas x e y do centro do triângulo")
-        centro = Point.criar_ponto()
         print("Digite as coordenadas dos três pontos do triângulo:")
         ponto1 = Point.criar_ponto()
         ponto2 = Point.criar_ponto()
         ponto3 = Point.criar_ponto()
-        print("Triângulo adicionado com sucesso.")
-        return Triangle(centro, ponto1, ponto2, ponto3)
+        return Triangle(ponto1, ponto2, ponto3)
