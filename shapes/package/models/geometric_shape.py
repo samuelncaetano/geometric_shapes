@@ -2,20 +2,18 @@ from abc import ABC, abstractmethod
 
 
 class GeometricShape(ABC):
-    @abstractmethod
     def calcular_area(self):
-        pass
+        return 0
 
-    @abstractmethod
     def calcular_perimetro(self):
-        pass
+        return 0
 
     @abstractmethod
     def distancia_origem(self):
         pass
 
     @abstractmethod
-    def distancia_pontos(self):
+    def distancia_pontos(self, ponto):
         pass
 
     @abstractmethod
@@ -23,7 +21,7 @@ class GeometricShape(ABC):
         pass
 
     @abstractmethod
-    def mover(self):
+    def mover(self, novo_ponto):
         pass
 
     @abstractmethod

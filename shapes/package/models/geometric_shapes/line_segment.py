@@ -14,12 +14,6 @@ class LineSegment(GeometricShape):
     def get_ponto2(self):
         return self.__ponto2
 
-    def calcular_area(self):
-        return 0
-
-    def calcular_perimetro(self):
-        return 0
-
     def calcular_comprimento(self):
         return self.__ponto1.distancia_pontos(self.__ponto2)
 

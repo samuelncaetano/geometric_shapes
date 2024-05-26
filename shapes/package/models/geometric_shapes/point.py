@@ -13,12 +13,6 @@ class Point(GeometricShape):
     def get_y(self):
         return self.__y
 
-    def calcular_area(self):
-        return 0
-
-    def calcular_perimetro(self):
-        return 0
-
     def distancia_origem(self):
         return sqrt(self.__x**2 + self.__y**2)
 
