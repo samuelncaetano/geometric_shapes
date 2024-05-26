@@ -1,4 +1,4 @@
-# pylint: disable = R1723, E1111
+# pylint: disable = R1723, E1111, E1101
 from shapes.package.models.geometric_shapes.triangle import Triangle
 from shapes.package.views.geometric_shape_view import GeometricShapeView
 from shapes.package import GeometricShapeController
@@ -19,14 +19,14 @@ class GeometricShapeApp:
             self.controller.listar_formas_geometricas()
 
             if opcao == "1":
-                self.handle_adicionar_forma()
+                self.__handle_adicionar_forma()
             elif opcao == "2":
-                self.handle_metodos_forma()
+                self.__handle_metodos_forma()
             elif opcao == "0":
                 print("Encerrando o programa.")
                 break
 
-    def handle_adicionar_forma(self):
+    def __handle_adicionar_forma(self):
         while True:
             self.view.mostrar_menu_formas()
             opcao_forma = self.view.ler_opcao()
@@ -35,15 +35,15 @@ class GeometricShapeApp:
             if opcao_forma == "":
                 self.controller.listar_formas_geometricas()
             elif opcao_forma == "1":
-                self.adicionar_forma(self.controller.adicionar_ponto)
+                self.__adicionar_forma(self.controller.adicionar_ponto)
             elif opcao_forma == "2":
-                self.adicionar_forma(self.controller.adicionar_segmento_de_reta)
+                self.__adicionar_forma(self.controller.adicionar_segmento_de_reta)
             elif opcao_forma == "3":
-                self.adicionar_forma(self.controller.adicionar_circulo)
+                self.__adicionar_forma(self.controller.adicionar_circulo)
             elif opcao_forma == "4":
-                self.adicionar_forma(self.controller.adicionar_retangulo)
+                self.__adicionar_forma(self.controller.adicionar_retangulo)
             elif opcao_forma == "5":
-                forma_adicionada = self.adicionar_forma(
+                forma_adicionada = self.__adicionar_forma(
                     self.controller.adicionar_triangulo
                 )
                 if not isinstance(forma_adicionada, Triangle):
@@ -52,7 +52,7 @@ class GeometricShapeApp:
                 self.controller.listar_formas_geometricas()
                 break
 
-    def adicionar_forma(self, func_adicionar):
+    def __adicionar_forma(self, func_adicionar):
         try:
             func_adicionar()
         except ValueError as e:
@@ -60,7 +60,7 @@ class GeometricShapeApp:
         self.view.limpar_tela()
         self.controller.listar_formas_geometricas()
 
-    def handle_metodos_forma(self):
+    def __handle_metodos_forma(self):
         while True:
             self.view.mostrar_menu_metodos()
             opcao_metodo = self.view.ler_opcao()
@@ -69,24 +69,26 @@ class GeometricShapeApp:
             if opcao_metodo == "":
                 self.controller.listar_formas_geometricas()
             elif opcao_metodo == "1":
-                self.calcular_e_mostrar(self.controller.calcular_area, "Área")
+                self.__calcular_e_mostrar(self.controller.calcular_area, "Área")
             elif opcao_metodo == "2":
-                self.calcular_e_mostrar(self.controller.calcular_perimetro, "Perímetro")
+                self.__calcular_e_mostrar(
+                    self.controller.calcular_perimetro, "Perímetro"
+                )
             elif opcao_metodo == "3":
-                self.calcular_e_mostrar(self.controller.distancia_origem, "Origem")
+                self.__calcular_e_mostrar(self.controller.distancia_origem, "Origem")
             elif opcao_metodo == "4":
-                self.calcular_e_mostrar_distancia_pontos()
+                self.__calcular_e_mostrar_distancia_pontos()
             elif opcao_metodo == "5":
-                self.calcular_e_mostrar_contem_ponto()
+                self.__calcular_e_mostrar_contem_ponto()
             elif opcao_metodo == "6":
-                self.mover_forma()
+                self.__mover_forma()
                 self.view.limpar_tela()
                 self.controller.listar_formas_geometricas()
             elif opcao_metodo == "0":
                 self.controller.listar_formas_geometricas()
                 break
 
-    def calcular_e_mostrar(self, func_calcular, label):
+    def __calcular_e_mostrar(self, func_calcular, label):
         self.controller.listar_formas_geometricas()
         try:
             index = self.view.obter_indice_forma_geometrica()
@@ -96,7 +98,7 @@ class GeometricShapeApp:
             return
         self.view.mostrar_resultado(resultado, label)
 
-    def calcular_e_mostrar_distancia_pontos(self):
+    def __calcular_e_mostrar_distancia_pontos(self):
         self.controller.listar_formas_geometricas()
         try:
             index = self.view.obter_indice_forma_geometrica()
@@ -109,7 +111,7 @@ class GeometricShapeApp:
             distancia_pontos, "Distancia entre o ponto e a forma geométrica"
         )
 
-    def calcular_e_mostrar_contem_ponto(self):
+    def __calcular_e_mostrar_contem_ponto(self):
         self.controller.listar_formas_geometricas()
         try:
             index = self.view.obter_indice_forma_geometrica()
@@ -120,7 +122,7 @@ class GeometricShapeApp:
             return
         self.view.mostrar_resultado(contem_ponto, "Contém Ponto")
 
-    def mover_forma(self):
+    def __mover_forma(self):
         self.controller.listar_formas_geometricas()
         try:
             index = self.view.obter_indice_forma_geometrica()
@@ -134,25 +136,25 @@ class GeometricShapeApp:
             self.view.limpar_tela()
 
             if opcao_metodo == "1":
-                self.mover_formas(index)
+                self.__mover_formas(index)
                 break
             elif opcao_metodo == "2":
-                self.mover_segmento_de_reta(index)
+                self.__mover_segmento_de_reta(index)
                 break
 
-    def mover_segmento_de_reta(self, index):
+    def __mover_segmento_de_reta(self, index):
         try:
             novo_ponto1 = Point.criar_ponto()
             novo_ponto2 = Point.criar_ponto()
         except ValueError as e:
             print("Erro ao adicionar ponto:", e)
             return
-        self.controller.mover_segmento_de_reta(index, novo_ponto1, novo_ponto2)
+        self.controller.__mover_segmento_de_reta(index, novo_ponto1, novo_ponto2)
 
-    def mover_formas(self, index):
+    def __mover_formas(self, index):
         try:
             novo_ponto = Point.criar_ponto()
         except ValueError as e:
             print("Erro ao adicionar ponto:", e)
             return
-        self.controller.mover_formas(index, novo_ponto)
+        self.controller.__mover_formas(index, novo_ponto)
