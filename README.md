@@ -30,6 +30,7 @@ src/
     ├── controllers/
     │   └── geometric_shape_controller.py
     └── views/
+        ├── geometric_shape_app.py
         └── geometric_shape_view.py
 ```
 
