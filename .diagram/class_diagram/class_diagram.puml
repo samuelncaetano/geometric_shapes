@@ -1,0 +1,49 @@
+@startuml class_diagram
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 0
+
+abstract class GeometricShape {}
+
+class Point {}
+
+class LineSegment {}
+
+class Circle {}
+
+class Rectangle {}
+
+class Triangle {}
+
+interface IRepository {}
+
+class InMemoryRepository {}
+
+class GeometricShapeController {}
+
+class GeometricShapeApp {}
+
+class GeometricShapeView {}
+
+' Inheritance
+GeometricShape <|-- Point
+GeometricShape <|-- LineSegment
+GeometricShape <|-- Circle
+GeometricShape <|-- Rectangle
+GeometricShape <|-- Triangle
+
+' Implement
+IRepository <|.. InMemoryRepository
+
+' Composition (Strong)
+GeometricShapeController *-- Point
+GeometricShapeController *-- LineSegment
+GeometricShapeController *-- Circle
+GeometricShapeController *-- Rectangle
+GeometricShapeController *-- Triangle
+Point *-- Rectangle
+
+' Aggregation (Weak)
+GeometricShapeController o-- IRepository
+GeometricShapeApp o-- GeometricShapeController
+GeometricShapeApp o-- GeometricShapeView
+@enduml
