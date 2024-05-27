@@ -10,10 +10,7 @@ def triangulo():
 
 
 def test_instanciar_triangulo_valido(triangulo):
-    try:
-        assert isinstance(triangulo, Triangle)
-    except ValueError:
-        pytest.fail("Os pontos fornecidos não formam um triângulo válido.")
+    assert isinstance(triangulo, Triangle)
 
 
 def test_instanciar_triangulo_invalido():
