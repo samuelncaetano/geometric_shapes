@@ -5,7 +5,7 @@
 ### Baixar o repositório
 
 ```bash
-git clone https://github.com/samuelncaetano/blackjack_python
+git clone https://github.com/samuelncaetano/geometric_shapes.git
 cd blackjack_python
 ```
 
