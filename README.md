@@ -6,7 +6,7 @@
 
 ```bash
 git clone https://github.com/samuelncaetano/geometric_shapes.git
-cd blackjack_python
+cd geometric_shapes
 ```
 
 ### Baixar o ambiente virtual
