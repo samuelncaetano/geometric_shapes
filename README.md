@@ -1,5 +1,38 @@
 # Geometric Shapes
 
+## Diretórios
+
+``` bash
+src/
+├── domain/
+│   ├── entities/
+│   │   ├── geometric_shape.py
+│   │   ├── point.py
+│   │   ├── line_segment.py
+│   │   ├── circle.py
+│   │   ├── rectangle.py
+│   │   └── triangle.py
+│   ├── repositories/
+│   │   └── irepository.py
+│   └── services/
+│       └── geometric_shape_service.py
+├── application/
+│   ├── use_cases/
+│   │   ├── create_shape.py
+│   │   ├── move_shape.py
+│   │   └── calculate_metrics.py
+│   └── factories/
+│       └── shape_factory.py
+├── infrastructure/
+│   └── repositories/
+│       └── in_memory_repository.py
+└── adapters/
+    ├── controllers/
+    │   └── geometric_shape_controller.py
+    └── views/
+        └── geometric_shape_view.py
+```
+
 ## Como usar este repositório
 
 ### Baixar o repositório
