@@ -149,7 +149,7 @@ class GeometricShapeApp:
         except ValueError as e:
             print("Erro ao adicionar ponto:", e)
             return
-        self.__controller.__mover_segmento_de_reta(index, novo_ponto1, novo_ponto2)
+        self.__controller.mover_segmento_de_reta(index, novo_ponto1, novo_ponto2)
 
     def __mover_formas(self, index):
         try:
@@ -157,4 +157,4 @@ class GeometricShapeApp:
         except ValueError as e:
             print("Erro ao adicionar ponto:", e)
             return
-        self.__controller.__mover_formas(index, novo_ponto)
+        self.__controller.mover_formas(index, novo_ponto)
