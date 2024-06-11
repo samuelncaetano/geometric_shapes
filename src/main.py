@@ -1,7 +1,8 @@
-from src.package import GeometricShapeApp, InMemoryRepository
+from src.package import GeometricShapeApp, InMemoryRepository, ShapeFactory
 
 
 if __name__ == "__main__":
     repository = InMemoryRepository()
-    app = GeometricShapeApp(repository)
+    factory = ShapeFactory()
+    app = GeometricShapeApp(repository, factory)
     app.run()
