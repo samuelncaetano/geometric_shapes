@@ -1,0 +1,63 @@
+@startuml class_diagram
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 4
+
+abstract GeometricShape {}
+class Point {}
+class LineSegment {}
+class Circle {}
+class Rectangle {}
+class Triangle {}
+
+interface IRepository {}
+
+class InMemoryRepository {}
+
+class CreateShape {}
+class MoveShape {}
+class CalculateMetrics {}
+
+class ShapeFactory {}
+
+class GeometricShapeController {}
+
+class GeometricShapeView {}
+
+class GeometricShapeApp {}
+
+' Inheritance (Herança)
+GeometricShape <|-- Point
+GeometricShape <|-- LineSegment
+GeometricShape <|-- Circle
+GeometricShape <|-- Rectangle
+GeometricShape <|-- Triangle
+
+' Implement (Implementação)
+IRepository <|.. InMemoryRepository
+
+' Composition (Composição)
+Point --* LineSegment
+Point --* Circle
+Point --* Rectangle
+Point --* Triangle
+GeometricShapeController *-- CreateShape
+GeometricShapeController *-- MoveShape
+GeometricShapeController *-- CalculateMetrics
+
+' Aggregation (Agregação)
+ShapeFactory o-- CreateShape
+InMemoryRepository o-- CreateShape
+InMemoryRepository o-- MoveShape
+InMemoryRepository o-- CalculateMetrics
+
+' Association (Associação)
+GeometricShapeApp --> GeometricShapeController
+GeometricShapeApp --> GeometricShapeView
+Point --> ShapeFactory
+LineSegment --> ShapeFactory
+Circle --> ShapeFactory
+Rectangle --> ShapeFactory
+Triangle --> ShapeFactory
+
+
+@enduml
