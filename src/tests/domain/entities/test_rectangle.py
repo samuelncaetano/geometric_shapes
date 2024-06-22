@@ -13,9 +13,19 @@ def test_instanciar_retangulo(retangulo):
     assert isinstance(retangulo, Rectangle)
 
 
-def test_criar_retangulo_invalido():
+def test_criar_retangulo_com_ponto_invalido():
     with pytest.raises(ValueError):
         Rectangle(Point(-1, -1), 4, 4)
+
+
+def test_criar_retangulo_com_largura_invalido():
+    with pytest.raises(ValueError):
+        return Rectangle(Point(2, 2), -4, 4)
+
+
+def test_criar_retangulo_com_altura_invalido():
+    with pytest.raises(ValueError):
+        return Rectangle(Point(2, 2), 4, -4)
 
 
 def test_obter_coordenadas_retangulo(retangulo):
