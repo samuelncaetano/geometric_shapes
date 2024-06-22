@@ -14,6 +14,11 @@ def test_instanciar_circulo(circulo):
     assert isinstance(circulo, Circle)
 
 
+def test_criar_circulo_invalido():
+    with pytest.raises(ValueError):
+        Circle(Point(-1, -1), 4)
+
+
 def test_obter_coordenadas_circulo(circulo):
     assert circulo.get_centro().get_x() == 0
     assert circulo.get_centro().get_y() == 0

@@ -5,7 +5,7 @@ from src.package import Point, LineSegment, Circle, Rectangle, Triangle, ShapeFa
 ponto = "3.0 4.0"
 reta = ["1 2", "3 4"]
 circulo = ["1 2", "3"]
-retangulo = ["0 0", "4", "4"]
+retangulo = ["2 2", "4", "4"]
 triangulo = ["0 0", "3 0", "0 4"]
 
 

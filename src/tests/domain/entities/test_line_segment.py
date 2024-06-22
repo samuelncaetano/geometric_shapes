@@ -14,6 +14,11 @@ def test_instanciar_reta(reta):
     assert isinstance(reta, LineSegment)
 
 
+def test_criar_reta_invalido():
+    with pytest.raises(ValueError):
+        LineSegment(Point(-1, -1), Point(4, 4))
+
+
 def test_obter_coordenadas_reta(reta):
     assert reta.get_ponto1().get_x() == 1
     assert reta.get_ponto1().get_y() == 1

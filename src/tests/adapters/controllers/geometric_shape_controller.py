@@ -1,7 +1,18 @@
 from unittest.mock import patch
 import pytest
-from src.package import InMemoryRepository, ShapeFactory, Point, LineSegment, Circle, Rectangle, Triangle, ShapeFactory
-from package.adapters.controllers.geometric_shape_controller import GeometricShapeController
+from src.package import (
+    InMemoryRepository,
+    ShapeFactory,
+    Point,
+    LineSegment,
+    Circle,
+    Rectangle,
+    Triangle,
+    ShapeFactory,
+)
+from package.adapters.controllers.geometric_shape_controller import (
+    GeometricShapeController,
+)
 
 ponto = "3.0 4.0"
 ponto_zero = "0.0 0.0"

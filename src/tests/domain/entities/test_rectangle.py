@@ -6,16 +6,21 @@ from src.package import Rectangle, Point
 
 @pytest.fixture
 def retangulo():
-    return Rectangle(Point(0, 0), 4, 4)
+    return Rectangle(Point(2, 2), 4, 4)
 
 
 def test_instanciar_retangulo(retangulo):
     assert isinstance(retangulo, Rectangle)
 
 
+def test_criar_retangulo_invalido():
+    with pytest.raises(ValueError):
+        Rectangle(Point(-1, -1), 4, 4)
+
+
 def test_obter_coordenadas_retangulo(retangulo):
-    assert retangulo.get_centro().get_x() == 0
-    assert retangulo.get_centro().get_y() == 0
+    assert retangulo.get_centro().get_x() == 2
+    assert retangulo.get_centro().get_y() == 2
     assert retangulo.get_largura() == 4
     assert retangulo.get_altura() == 4
 
@@ -31,8 +36,8 @@ def test_calcular_perimetro_retangulo(retangulo):
 
 
 def test_distancia_origem_retangulo(retangulo):
-    ponto_superior_esquerdo = Point(-2, 2)
-    ponto_inferior_direito = Point(2, -2)
+    ponto_superior_esquerdo = Point(0, 4)
+    ponto_inferior_direito = Point(4, 0)
     origem = min(
         ponto_inferior_direito.distancia_origem(),
         ponto_superior_esquerdo.distancia_origem(),
@@ -42,8 +47,8 @@ def test_distancia_origem_retangulo(retangulo):
 
 def test_distancia_pontos_retangulo(retangulo):
     ponto = Point(1, 1)
-    ponto_superior_esquerdo = Point(-2, 2)
-    ponto_inferior_direito = Point(2, -2)
+    ponto_superior_esquerdo = Point(0, 4)
+    ponto_inferior_direito = Point(4, 0)
     distancias = [
         ponto_inferior_direito.distancia_pontos(ponto),
         ponto_superior_esquerdo.distancia_pontos(ponto),
@@ -78,17 +83,17 @@ def test_mover_retangulo(retangulo):
 
 
 def test_str_retangulo(retangulo):
-    message = "Retângulo(Centro: Ponto(0, 0), Largura: 4, Altura: 4)"
+    message = "Retângulo(Centro: Ponto(2, 2), Largura: 4, Altura: 4)"
     assert str(retangulo) == message
 
 
 def test_criar_retangulo():
-    user_input = ["0 0", "4", "4"]
+    user_input = ["2 2", "4", "4"]
 
     with patch("builtins.input", side_effect=user_input):
         retangulo = Rectangle.criar_retangulo()
 
-    assert retangulo.get_centro().get_x() == 0
-    assert retangulo.get_centro().get_y() == 0
+    assert retangulo.get_centro().get_x() == 2
+    assert retangulo.get_centro().get_y() == 2
     assert retangulo.get_largura() == 4
     assert retangulo.get_altura() == 4

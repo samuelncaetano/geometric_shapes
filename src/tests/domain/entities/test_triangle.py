@@ -13,6 +13,11 @@ def test_instanciar_triangulo_valido(triangulo):
     assert isinstance(triangulo, Triangle)
 
 
+def test_instanciar_triangulo_invalido_negativo():
+    with pytest.raises(ValueError):
+        Triangle(Point(0, 0), Point(-3, 0), Point(0, -4))
+
+
 def test_instanciar_triangulo_invalido():
     ponto1 = Point(0, 0)
     ponto2 = Point(1, 1)

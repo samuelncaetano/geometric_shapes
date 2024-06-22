@@ -4,6 +4,8 @@ from src.package.domain.entities.geometric_shape import GeometricShape
 
 class Point(GeometricShape):
     def __init__(self, x, y):
+        if x < 0 or y < 0:
+            raise ValueError("As coordenadas devem ser não negativas")
         self.__x = x
         self.__y = y
 

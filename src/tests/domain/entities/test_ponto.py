@@ -19,6 +19,11 @@ def test_instanciar_ponto(origem, ponto):
     assert isinstance(ponto, Point)
 
 
+def test_criar_ponto_invalido():
+    with pytest.raises(ValueError):
+        Point(-1, -1)
+
+
 def test_obter_coordenadas_ponto(origem, ponto):
     assert origem.get_x() == 0
     assert origem.get_y() == 0
