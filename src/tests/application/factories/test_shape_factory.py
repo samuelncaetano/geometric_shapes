@@ -1,3 +1,4 @@
+# pylint: disable = W0613
 from unittest.mock import patch
 import pytest
 from src.package import Point, LineSegment, Circle, Rectangle, Triangle, ShapeFactory

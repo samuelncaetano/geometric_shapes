@@ -40,4 +40,4 @@ class TestCalculateMetrics:
         mock_repository.get.return_value = mock_forma
         contem = calculate_metrics.contem_ponto(0, (4, 5))
         mock_forma.contem_ponto.assert_called_once_with((4, 5))
-        assert contem == True
+        assert contem is True

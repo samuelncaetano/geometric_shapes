@@ -1,3 +1,4 @@
+# pylint: disable = W0613
 from unittest.mock import patch
 import pytest
 from src.package import (
@@ -8,7 +9,6 @@ from src.package import (
     Circle,
     Rectangle,
     Triangle,
-    ShapeFactory,
 )
 from package.adapters.controllers.geometric_shape_controller import (
     GeometricShapeController,

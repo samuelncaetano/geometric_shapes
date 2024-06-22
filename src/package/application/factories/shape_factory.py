@@ -1,3 +1,4 @@
+# pylint: disable = R1705
 from src.package.domain import Point, LineSegment, Circle, Rectangle, Triangle
 
 

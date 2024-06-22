@@ -1,3 +1,4 @@
+# pylint: disable = R1710
 from src.package.domain import IRepository
 
 
