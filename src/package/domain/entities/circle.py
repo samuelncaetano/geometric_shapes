@@ -5,6 +5,8 @@ from src.package.domain.entities.point import Point
 
 class Circle(GeometricShape):
     def __init__(self, centro, raio):
+        if raio <= 0:
+            raise ValueError("O raio não deve ser negativo ou nulo")
         self.__centro = centro
         self.__raio = raio
 

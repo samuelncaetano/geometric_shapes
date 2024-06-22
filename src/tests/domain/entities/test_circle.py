@@ -14,9 +14,14 @@ def test_instanciar_circulo(circulo):
     assert isinstance(circulo, Circle)
 
 
-def test_criar_circulo_invalido():
+def test_criar_circulo_com_ponto_invalido():
     with pytest.raises(ValueError):
         Circle(Point(-1, -1), 4)
+
+
+def test_criar_circulo_com_raio_invalido():
+    with pytest.raises(ValueError):
+        Circle(Point(0, 0), -4)
 
 
 def test_obter_coordenadas_circulo(circulo):
@@ -41,7 +46,8 @@ def test_distancia_origem_circulo(circulo):
 
 def test_distancia_pontos_circulo(circulo):
     ponto = Point(1, 1)
-    distancia = abs(circulo.get_centro().distancia_pontos(ponto) - circulo.get_raio())
+    distancia = abs(circulo.get_centro().distancia_pontos(
+        ponto) - circulo.get_raio())
     assert circulo.distancia_pontos(ponto) == distancia
 
 
