@@ -119,3 +119,7 @@ def test_criar_triangulo_valido():
 def test_criar_triangulo_invalido(mock_input):
     with pytest.raises(ValueError):
         Triangle.criar_triangulo()
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

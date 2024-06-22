@@ -91,3 +91,7 @@ def test_criar_ponto():
 
         assert ponto.get_x() == 3.0
         assert ponto.get_y() == 4.0
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

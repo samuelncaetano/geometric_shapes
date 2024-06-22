@@ -15,7 +15,7 @@ def test_instanciar_reta(reta):
 
 
 def test_criar_reta_invalido():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError):  # type: ignore
         LineSegment(Point(-1, -1), Point(4, 4))
 
 
@@ -81,3 +81,7 @@ def test_criar_reta():
     assert reta.get_ponto1().get_y() == 0
     assert reta.get_ponto2().get_x() == 2
     assert reta.get_ponto2().get_y() == 2
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

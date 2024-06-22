@@ -9,8 +9,6 @@ from src.package import (
     Circle,
     Rectangle,
     Triangle,
-)
-from package.adapters.controllers.geometric_shape_controller import (
     GeometricShapeController,
 )
 
@@ -18,7 +16,7 @@ ponto = "3.0 4.0"
 ponto_zero = "0.0 0.0"
 reta = ["1 2", "3 4"]
 circulo = ["1 2", "3"]
-retangulo = ["0 0", "4", "4"]
+retangulo = ["2 2", "4", "4"]
 triangulo = ["0 0", "3 0", "0 4"]
 
 
@@ -121,3 +119,7 @@ def test_mover_segmento_de_reta(mock_input, controller):
     forma = controller.listar_formas_geometricas()[0]
     assert forma.get_ponto1().get_x() == 1 and forma.get_ponto1().get_y() == 1
     assert forma.get_ponto2().get_x() == 4 and forma.get_ponto2().get_y() == 4
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

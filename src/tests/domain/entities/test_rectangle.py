@@ -107,3 +107,7 @@ def test_criar_retangulo():
     assert retangulo.get_centro().get_y() == 2
     assert retangulo.get_largura() == 4
     assert retangulo.get_altura() == 4
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

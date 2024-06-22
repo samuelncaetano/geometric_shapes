@@ -39,3 +39,7 @@ class TestShapeFactory:
     def test_tipo_forma_desconhecido(self):
         with pytest.raises(ValueError):
             ShapeFactory.criar_forma("forma_desconhecida")
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

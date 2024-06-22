@@ -78,3 +78,7 @@ def test_criar_circulo():
     assert circulo.get_centro().get_x() == 0
     assert circulo.get_centro().get_y() == 0
     assert circulo.get_raio() == 4
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
