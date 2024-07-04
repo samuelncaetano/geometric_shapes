@@ -107,7 +107,7 @@ pytest
 Se você deseja executar os testes de maneira mais detalhada, use o comando:
 
 ```bash
-pytest src/tests/diretório/nome_do_teste -v
+python src/tests/diretório/nome_do_teste
 ```
 
 ### Verificar Cobertura do Código
