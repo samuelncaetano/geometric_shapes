@@ -1,0 +1,162 @@
+@startuml class_diagram
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 4
+
+abstract class GeometricShape {
+  +calcular_area()
+  +calcular_perimetro()
+  {abstract} +distancia_origem()
+  {abstract} +distancia_pontos()
+  {abstract} +contem_ponto()
+  {abstract} +mover()
+  {abstract} +__str__()
+}
+
+class Point {
+  -x
+  -y
+  +__init__()
+  +get_x()
+  +get_y()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover()
+  +__str__()
+  +{static} criar_ponto()
+}
+
+class LineSegment {
+  -ponto1
+  -ponto2
+  +__init__()
+  +get_ponto1()
+  +get_ponto2()
+  +calcular_comprimento()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover()
+  +__str__()
+  +{static} criar_segmento_de_reta()
+}
+
+class Circle {
+  -centro
+  -raio
+  +__init__()
+  +get_centro()
+  +get_raio()
+  +calcular_area()
+  +calcular_perimetro()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover()
+  +__str__()
+  +{static} criar_circulo()
+}
+
+class Rectangle {
+  -centro
+  -largura
+  -altura
+  -ponto_superior_esquerdo
+  -ponto_inferior_direito
+  +__init__()
+  +get_centro()
+  +get_largura()
+  +get_altura()
+  -atualizar_pontos()
+  +calcular_area()
+  +calcular_perimetro()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover()
+  +__str__()
+  +{static} criar_retangulo()
+}
+
+class Triangle {
+  -ponto1
+  -ponto2
+  -ponto3
+  +__init__()
+  +get_ponto1()
+  +get_ponto2()
+  +get_ponto3()
+  +calcular_centro()
+  +calcular_area()
+  +calcular_perimetro()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover()
+  +__str__()
+  +{static} formar_triangulo()
+  +{static} criar_triangulo()
+}
+
+interface IRepository {
+  +add()
+  +list_all()
+  +get()
+  +remove()
+}
+
+class InMemoryRepository {
+  -items
+  +__init__()
+  +add()
+  +list_all()
+  +get()
+  +remove()
+}
+
+class GeometricShapeController {
+  -repository
+  +__init__()
+  +adicionar_forma_geometrica()
+  +listar_formas_geometricas()
+  +calcular_area()
+  +calcular_perimetro()
+  +distancia_origem()
+  +distancia_pontos()
+  +contem_ponto()
+  +mover_formas()
+  +mover_segmento_de_reta()
+  +adicionar_ponto()
+  +adicionar_segmento_de_reta()
+  +adicionar_circulo()
+  +adicionar_retangulo()
+  +adicionar_triangulo()
+}
+
+class GeometricShapeApp {
+  -controller
+  -view
+  +__init__()
+  +run()
+  -handle_adicionar_forma()
+  -adicionar_forma()
+  -handle_metodos_forma()
+  -calcular_e_mostrar()
+  -calcular_e_mostrar_distancia_pontos()
+  -calcular_e_mostrar_contem_ponto()
+  -mover_forma()
+  -mover_segmento_de_reta()
+  -mover_formas()
+}
+
+class GeometricShapeView {
+  +{static} mostrar_menu()
+  +{static} mostrar_menu_formas()
+  +{static} mostrar_menu_metodos()
+  +{static} mostrar_mover()
+  +{static} ler_opcao()
+  +{static} limpar_tela()
+  +{static} obter_indice_forma_geometrica()
+  +{static} mostrar_resultado(resultado, mensagem)
+}
+@enduml

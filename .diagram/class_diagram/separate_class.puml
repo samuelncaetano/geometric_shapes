@@ -2,161 +2,173 @@
 skinparam classAttributeIconSize 0
 skinparam groupInheritance 4
 
-abstract class GeometricShape {
-  +calcular_area()
-  +calcular_perimetro()
-  {abstract} +distancia_origem()
-  {abstract} +distancia_pontos()
-  {abstract} +contem_ponto()
-  {abstract} +mover()
-  {abstract} +__str__()
+class GeometricShape {
+  + calcular_area(): float
+  + calcular_perimetro(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto: Point): void
+  + __str__(): str
 }
-
 class Point {
-  -x
-  -y
-  +__init__()
-  +get_x()
-  +get_y()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover()
-  +__str__()
-  +{static} criar_ponto()
+  + get_x(): float
+  + get_y(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto: Point): void
+  + __str__(): str
+  + static criar_ponto(): Point
 }
-
 class LineSegment {
-  -ponto1
-  -ponto2
-  +__init__()
-  +get_ponto1()
-  +get_ponto2()
-  +calcular_comprimento()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover()
-  +__str__()
-  +{static} criar_segmento_de_reta()
+  + get_ponto1(): Point
+  + get_ponto2(): Point
+  + calcular_comprimento(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto1: Point, novo_ponto2: Point): void
+  + __str__(): str
+  + static criar_segmento_de_reta(): LineSegment
 }
-
 class Circle {
-  -centro
-  -raio
-  +__init__()
-  +get_centro()
-  +get_raio()
-  +calcular_area()
-  +calcular_perimetro()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover()
-  +__str__()
-  +{static} criar_circulo()
+  + get_centro(): Point
+  + get_raio(): float
+  + calcular_area(): float
+  + calcular_perimetro(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto: Point): void
+  + __str__(): str
+  + static criar_circulo(): Circle
 }
-
 class Rectangle {
-  -centro
-  -largura
-  -altura
-  -ponto_superior_esquerdo
-  -ponto_inferior_direito
-  +__init__()
-  +get_centro()
-  +get_largura()
-  +get_altura()
-  -atualizar_pontos()
-  +calcular_area()
-  +calcular_perimetro()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover()
-  +__str__()
-  +{static} criar_retangulo()
+  + get_centro(): Point
+  + get_largura(): float
+  + get_altura(): float
+  + calcular_area(): float
+  + calcular_perimetro(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto: Point): void
+  + __str__(): str
+  + static criar_retangulo(): Rectangle
 }
-
 class Triangle {
-  -ponto1
-  -ponto2
-  -ponto3
-  +__init__()
-  +get_ponto1()
-  +get_ponto2()
-  +get_ponto3()
-  +calcular_centro()
-  +calcular_area()
-  +calcular_perimetro()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover()
-  +__str__()
-  +{static} formar_triangulo()
-  +{static} criar_triangulo()
+  + get_ponto1(): Point
+  + get_ponto2(): Point
+  + get_ponto3(): Point
+  + calcular_centro(): Point
+  + calcular_area(): float
+  + calcular_perimetro(): float
+  + distancia_origem(): float
+  + distancia_pontos(ponto: Point): float
+  + contem_ponto(ponto: Point): bool
+  + mover(novo_ponto: Point): void
+  + __str__(): str
+  + static formar_triangulo(ponto1: Point, ponto2: Point, ponto3: Point): bool
+  + static criar_triangulo(): Triangle
 }
 
 interface IRepository {
-  +add()
-  +list_all()
-  +get()
-  +remove()
+  + add(item: GeometricShape): void
+  + list_all(): List<GeometricShape>
+  + get(index: int): GeometricShape
+  + remove(index: int): GeometricShape
 }
 
 class InMemoryRepository {
-  -items
-  +__init__()
-  +add()
-  +list_all()
-  +get()
-  +remove()
+  + add(item: GeometricShape): void
+  + list_all(): List<GeometricShape>
+  + get(index: int): GeometricShape
+  + remove(index: int): GeometricShape
+}
+
+class CreateShape {
+  - repository: IRepository
+  + execute(tipo_forma: str): void
+}
+class MoveShape {
+  - repository: IRepository
+  + execute(index: int, novo_ponto1: Point, novo_ponto2: Point = None): void
+}
+class CalculateMetrics {
+  - repository: IRepository
+  + calcular_area(index: int): float
+  + calcular_perimetro(index: int): float
+  + distancia_origem(index: int): float
+  + distancia_pontos(index: int, ponto: Point): float
+  + contem_ponto(index: int, ponto: Point): bool
+}
+
+class ShapeFactory {
+  + static criar_forma(tipo_forma: str): GeometricShape
 }
 
 class GeometricShapeController {
-  -repository
-  +__init__()
-  +adicionar_forma_geometrica()
-  +listar_formas_geometricas()
-  +calcular_area()
-  +calcular_perimetro()
-  +distancia_origem()
-  +distancia_pontos()
-  +contem_ponto()
-  +mover_formas()
-  +mover_segmento_de_reta()
-  +adicionar_ponto()
-  +adicionar_segmento_de_reta()
-  +adicionar_circulo()
-  +adicionar_retangulo()
-  +adicionar_triangulo()
-}
-
-class GeometricShapeApp {
-  -controller
-  -view
-  +__init__()
-  +run()
-  -handle_adicionar_forma()
-  -adicionar_forma()
-  -handle_metodos_forma()
-  -calcular_e_mostrar()
-  -calcular_e_mostrar_distancia_pontos()
-  -calcular_e_mostrar_contem_ponto()
-  -mover_forma()
-  -mover_segmento_de_reta()
-  -mover_formas()
+  - create_shape_use_case: CreateShape
+  - move_shape_use_case: MoveShape
+  - calculate_metrics_use_case: CalculateMetrics
+  + adicionar_forma_geometrica(tipo_forma: str): void
+  + listar_formas_geometricas(): List<GeometricShape>
+  + calcular_area(index: int): float
+  + calcular_perimetro(index: int): float
+  + distancia_origem(index: int): float
+  + distancia_pontos(index: int, ponto: Point): float
+  + contem_ponto(index: int, ponto: Point): bool
+  + mover_forma(index: int, novo_ponto: Point): void
+  + mover_segmento_de_reta(index: int, novo_ponto1: Point, novo_ponto2: Point): void
+  + adicionar_ponto(): void
+  + adicionar_segmento_de_reta(): void
+  + adicionar_circulo(): void
+  + adicionar_retangulo(): void
+  + adicionar_triangulo(): void
 }
 
 class GeometricShapeView {
-  +{static} mostrar_menu()
-  +{static} mostrar_menu_formas()
-  +{static} mostrar_menu_metodos()
-  +{static} mostrar_mover()
-  +{static} ler_opcao()
-  +{static} limpar_tela()
-  +{static} obter_indice_forma_geometrica()
-  +{static} mostrar_resultado(resultado, mensagem)
+  + mostrar_menu(): void
+  + mostrar_menu_formas(): void
+  + mostrar_menu_metodos(): void
+  + mostrar_mover(): void
+  + ler_opcao(): str
+  + limpar_tela(): void
+  + obter_indice_forma_geometrica(): int
+  + mostrar_resultado(resultado: Any, mensagem: str): void
 }
+
+class GeometricShapeApp {
+  - controller: GeometricShapeController
+  - view: GeometricShapeView
+  + run(): void
+  - __handle_adicionar_forma(): void
+  - __adicionar_forma(func_adicionar: Callable): void
+  - __handle_metodos_forma(): void
+  - __calcular_e_mostrar(func_calcular: Callable, label: str): void
+  - __calcular_e_mostrar_distancia_pontos(): void
+  - __calcular_e_mostrar_contem_ponto(): void
+  - __mover_forma(): void
+  - __mover_segmento_de_reta(index: int): void
+  - __mover_formas(index: int): void
+  - __listar_formas(formas: List[GeometricShape]): void
+}
+
+
+GeometricShape <|-- Point
+GeometricShape <|-- LineSegment
+GeometricShape <|-- Circle
+GeometricShape <|-- Rectangle
+GeometricShape <|-- Triangle
+IRepository <|.. InMemoryRepository
+IRepository <|.. CreateShape
+IRepository <|.. MoveShape
+IRepository <|.. CalculateMetrics
+GeometricShapeController --> CreateShape
+GeometricShapeController --> MoveShape
+GeometricShapeController --> CalculateMetrics
+GeometricShapeController --> GeometricShapeView
+GeometricShapeApp --> GeometricShapeController
+GeometricShapeApp --> GeometricShapeView
 @enduml
