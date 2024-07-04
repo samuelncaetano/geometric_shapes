@@ -1,116 +1,139 @@
 # Geometric Shapes
 
-## Diretórios
+## Estrutura de Diretórios
 
-``` bash
+Abaixo está a estrutura de diretórios do projeto.
+
+```bash
 src/
 ├── domain/
 │   ├── entities/
-│   │   ├── geometric_shape.py
-│   │   ├── point.py
-│   │   ├── line_segment.py
-│   │   ├── circle.py
-│   │   ├── rectangle.py
-│   │   └── triangle.py
+│   │   ├── geometric_shape.py        # Define a classe base para todas as formas geométricas
+│   │   ├── point.py                  # Define a classe Point para representar um ponto no espaço
+│   │   ├── line_segment.py           # Define a classe LineSegment para representar um segmento de linha
+│   │   ├── circle.py                 # Define a classe Circle para representar um círculo
+│   │   ├── rectangle.py              # Define a classe Rectangle para representar um retângulo
+│   │   └── triangle.py               # Define a classe Triangle para representar um triângulo
 │   ├── repositories/
-│   │   └── irepository.py
-│   └── services/
-│       └── geometric_shape_service.py
+│   │   └── irepository.py            # Interface para os repositórios de armazenamento das formas geométricas
 ├── application/
 │   ├── use_cases/
-│   │   ├── create_shape.py
-│   │   ├── move_shape.py
-│   │   └── calculate_metrics.py
+│   │   ├── create_shape.py           # Caso de uso para criar uma nova forma geométrica
+│   │   ├── move_shape.py             # Caso de uso para mover uma forma geométrica
+│   │   └── calculate_metrics.py      # Caso de uso para calcular métricas (área, perímetro, etc.) das formas geométricas
 │   └── factories/
-│       └── shape_factory.py
+│       └── shape_factory.py          # Fábrica para criar instâncias das formas geométricas
 ├── infrastructure/
 │   └── repositories/
-│       └── in_memory_repository.py
+│       └── in_memory_repository.py   # Implementação de um repositório em memória para armazenar as formas geométricas
 └── adapters/
     ├── controllers/
-    │   └── geometric_shape_controller.py
+    │   └── geometric_shape_controller.py # Controlador para intermediar as interações entre a aplicação e a interface de usuário
     └── views/
-        ├── geometric_shape_app.py
-        └── geometric_shape_view.py
+        ├── geometric_shape_app.py    # Aplicação principal que inicializa e executa a interface de usuário
+        └── geometric_shape_view.py   # Define a interface de usuário para interação com as formas geométricas
 ```
 
-## Como usar este repositório
+## Uso do Repositório
 
-### Baixar o repositório
+### Clonar o Repositório
+
+Primeiro, você precisa clonar o repositório do GitHub para o seu ambiente local:
 
 ```bash
 git clone https://github.com/samuelncaetano/geometric_shapes.git
 cd geometric_shapes
 ```
 
-### Baixar o ambiente virtual
+### Configurar Ambiente Virtual
+
+Para evitar conflitos de dependências e garantir que todas as bibliotecas necessárias estejam instaladas corretamente, vamos configurar um ambiente virtual:
+
+1. Instalar o virtualenv se ainda não estiver instalado:
 
 ```bash
 pip3 install virtualenv
 ```
 
-### Inicializar o ambiente virtual
+2. Criar um novo ambiente virtual:
 
 ```bash
 virtualenv -p python3 venv
 ```
 
-### Ativar o ambiente virtual
+3. Ativar o ambiente virtual:
 
 ```bash
 source venv/bin/activate
 ```
 
-### Baixar todos os pacotes necessários
+### Instalar Dependências
+
+Com o ambiente virtual ativado, instale todas as dependências necessárias para o projeto:
 
 ```bash
 venv/bin/pip3 install -r requirements.txt
 ```
 
-## Como executar os testes
+### Configurar o PYTHONPATH
 
-Para executar os testes, basta navegar até o diretório raiz do projeto e executar o pytest:
+Para garantir que o Python encontre todos os módulos do projeto, configure o PYTHONPATH. Execute o script `setup_env.sh`, que configurará o PYTHONPATH temporariamente para a sessão atual do terminal:
+
+```bash
+chmod +x setup_env.sh
+./setup_env.sh
+```
+
+### Executar o Script Principal
+
+Com o ambiente configurado, você pode executar o script principal que inicializa o programa:
+
+```bash
+python src/main.py
+```
+
+## Executar Testes
+
+### Executar Todos os Testes
+
+Para executar todos os testes, use o comando:
 
 ```bash
 pytest
 ```
 
-Isso executará todos os testes no diretório de testes padrão. Se você quiser executar testes específicos ou de um determinado arquivo, pode passar o caminho para o arquivo como um argumento para o pytest.
+#### Executar Testes Detalhados
 
-Para executar os testes de forma mais detalhada, basta navegar até o diretório raiz do projeto e executar o pytest com a opção -v:
+Se você deseja executar os testes de maneira mais detalhada, use o comando:
 
 ```bash
-pytest -v
+pytest src/tests/diretório/nome_do_teste -v
 ```
 
-### Verificar Cobertura de Código
+### Verificar Cobertura do Código
 
-Além de executar os testes, é útil verificar a cobertura de código para garantir que todos os aspectos do código estejam sendo testados adequadamente. Certifique-se de ter executado os testes primeiro para que o coverage possa analisar os resultados dos testes.
+Para verificar a cobertura do código, siga os comandos abaixo:
+
+1. Execute os testes com o coverage:
 
 ```bash
 coverage run -m pytest
 ```
 
-Depois de executar o coverage, você pode gerar um relatório de cobertura para visualizar a porcentagem de código testada e identificar áreas que precisam de mais testes.
+2. Gere um relatório de cobertura:
 
 ```bash
 coverage report
 ```
 
-Isso exibirá um relatório detalhado mostrando a cobertura de cada arquivo do projeto. Além de verificar a cobertura de código através do relatório textual, você também pode gerar um relatório HTML mais detalhado para uma análise mais aprofundada.
-
 ### Gerar Relatório HTML
+
+Para uma visualização mais detalhada da cobertura de código, você pode gerar um relatório HTML:
 
 ```bash
 coverage html
 ```
 
-Isso criará um diretório chamado `htmlcov` contendo arquivos HTML que representam a cobertura de código do seu projeto.
-
 ### Visualizar Relatório HTML
 
-Você pode visualizar o relatório HTML abrindo o arquivo `index.html` no diretório `htmlcov` em seu navegador da web. Isso fornecerá uma visualização mais detalhada da cobertura de código, incluindo métricas específicas e uma representação gráfica da cobertura por arquivo. Com o relatório HTML, você pode identificar áreas específicas do código que precisam de mais testes e tomar medidas para melhorar a cobertura de código do seu projeto.
-
-## Aviso
-
-Novas atualizações do código estarão disponíveis na branch `arch`.
+Abra o arquivo `index.html` no diretório htmlcov em seu navegador para uma análise detalhada da cobertura de código.
