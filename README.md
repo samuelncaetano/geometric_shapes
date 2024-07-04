@@ -1,8 +1,8 @@
 # Geometric Shapes
 
-## Estrutura de Diretórios
+## Estrutura dos Diretórios
 
-Abaixo está a estrutura de diretórios do projeto.
+Abaixo está a estrutura dos diretórios do projeto.
 
 ```bash
 src/
@@ -47,7 +47,7 @@ cd geometric_shapes
 
 ### Configurar Ambiente Virtual
 
-Para evitar conflitos de dependências e garantir que todas as bibliotecas necessárias estejam instaladas corretamente, vamos configurar um ambiente virtual:
+Para evitar conflitos de dependências e garantir que todas as bibliotecas necessárias estejam instaladas corretamente, configure um ambiente virtual:
 
 1. Instalar o virtualenv se ainda não estiver instalado:
 
