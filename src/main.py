@@ -1,5 +1,10 @@
 from pathlib import Path
-from src.package import GeometricShapeApp, InMemoryRepository, ShapeFactory, JsonRepository
+from src.package import (
+    GeometricShapeApp,
+    InMemoryRepository,
+    ShapeFactory,
+    JsonRepository,
+)
 
 
 if __name__ == "__main__":
