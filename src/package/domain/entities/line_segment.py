@@ -59,7 +59,7 @@ class LineSegment(GeometricShape):
         return {
             "type": "LineSegment",
             "ponto1": self.__ponto1.to_dict(),
-            "ponto2": self.__ponto2.to_dict()
+            "ponto2": self.__ponto2.to_dict(),
         }
 
     @staticmethod

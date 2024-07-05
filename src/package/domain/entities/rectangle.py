@@ -5,8 +5,7 @@ from src.package.domain.entities.point import Point
 class Rectangle(GeometricShape):
     def __init__(self, centro, largura, altura):
         if largura <= 0 or altura <= 0:
-            raise ValueError(
-                "A altura e a largura não podem ser negativas ou nulas")
+            raise ValueError("A altura e a largura não podem ser negativas ou nulas")
         self.__centro = centro
         self.__largura = largura
         self.__altura = altura
@@ -84,7 +83,7 @@ class Rectangle(GeometricShape):
             "type": "Rectangle",
             "centro": self.__centro.to_dict(),
             "largura": self.__largura,
-            "altura": self.__altura
+            "altura": self.__altura,
         }
 
     @staticmethod

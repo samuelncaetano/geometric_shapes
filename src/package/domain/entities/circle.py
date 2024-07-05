@@ -41,7 +41,7 @@ class Circle(GeometricShape):
         return {
             "type": "Circle",
             "centro": self.__centro.to_dict(),
-            "raio": self.__raio
+            "raio": self.__raio,
         }
 
     @staticmethod

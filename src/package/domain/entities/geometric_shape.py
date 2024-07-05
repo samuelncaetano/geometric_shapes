@@ -20,11 +20,9 @@ class GeometricShape(ABC):
     def contem_ponto(self, ponto):
         pass
 
-    @abstractmethod
-    def mover(self, novo_ponto):
+    def mover(self):
         pass
 
-    @abstractmethod
     def __str__(self):
         pass
 
