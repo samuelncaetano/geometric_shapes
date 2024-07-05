@@ -37,6 +37,19 @@ class Circle(GeometricShape):
     def __str__(self):
         return f"Círculo(Centro: {self.__centro}, Raio: {self.__raio})"
 
+    def to_dict(self):
+        return {
+            "type": "Circle",
+            "centro": self.__centro.to_dict(),
+            "raio": self.__raio
+        }
+
+    @staticmethod
+    def from_dict(data):
+        centro = Point.from_dict(data["centro"])
+        raio = data["raio"]
+        return Circle(centro, raio)
+
     @staticmethod
     def criar_circulo():
         x, y = map(

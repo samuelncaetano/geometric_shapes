@@ -27,3 +27,12 @@ class GeometricShape(ABC):
     @abstractmethod
     def __str__(self):
         pass
+
+    @abstractmethod
+    def to_dict(self):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def from_dict(data):
+        pass

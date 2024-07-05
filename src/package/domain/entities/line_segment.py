@@ -55,6 +55,19 @@ class LineSegment(GeometricShape):
     def __str__(self):
         return f"Segmento de Reta({self.__ponto1}, {self.__ponto2})"
 
+    def to_dict(self):
+        return {
+            "type": "LineSegment",
+            "ponto1": self.__ponto1.to_dict(),
+            "ponto2": self.__ponto2.to_dict()
+        }
+
+    @staticmethod
+    def from_dict(data):
+        ponto1 = Point.from_dict(data["ponto1"])
+        ponto2 = Point.from_dict(data["ponto2"])
+        return LineSegment(ponto1, ponto2)
+
     @staticmethod
     def criar_segmento_de_reta():
         print("Para adicionar um segmento de reta, você precisa de dois pontos.")
