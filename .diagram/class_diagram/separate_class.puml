@@ -155,20 +155,4 @@ class GeometricShapeApp {
   - __listar_formas(formas: List[GeometricShape]): void
 }
 
-
-GeometricShape <|-- Point
-GeometricShape <|-- LineSegment
-GeometricShape <|-- Circle
-GeometricShape <|-- Rectangle
-GeometricShape <|-- Triangle
-IRepository <|.. InMemoryRepository
-IRepository <|.. CreateShape
-IRepository <|.. MoveShape
-IRepository <|.. CalculateMetrics
-GeometricShapeController --> CreateShape
-GeometricShapeController --> MoveShape
-GeometricShapeController --> CalculateMetrics
-GeometricShapeController --> GeometricShapeView
-GeometricShapeApp --> GeometricShapeController
-GeometricShapeApp --> GeometricShapeView
 @enduml
