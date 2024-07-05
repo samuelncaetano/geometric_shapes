@@ -57,7 +57,6 @@ class GeometricShapeApp:
             func_adicionar()
         except ValueError as e:
             print("Erro ao adicionar forma geométrica:", e)
-        self.view.limpar_tela()
         formas = self.controller.listar_formas_geometricas()
         self.__listar_formas(formas)
 
@@ -83,8 +82,8 @@ class GeometricShapeApp:
             elif opcao_metodo == "5":
                 self.__calcular_e_mostrar_contem_ponto()
             elif opcao_metodo == "6":
-                self.__mover_forma()
                 self.view.limpar_tela()
+                self.__mover_forma()
                 formas = self.controller.listar_formas_geometricas()
                 self.__listar_formas(formas)
             elif opcao_metodo == "0":
@@ -130,6 +129,7 @@ class GeometricShapeApp:
         self.view.mostrar_resultado(contem_ponto, "Contém Ponto")
 
     def __mover_forma(self):
+        self.view.limpar_tela()
         formas = self.controller.listar_formas_geometricas()
         self.__listar_formas(formas)
         try:
@@ -155,7 +155,7 @@ class GeometricShapeApp:
             novo_ponto1 = Point.criar_ponto()
             novo_ponto2 = Point.criar_ponto()
         except ValueError as e:
-            print("Erro ao adicionar ponto:", e)
+            print(f"Erro ao mover forma: {e}")
             return
         self.controller.mover_segmento_de_reta(index, novo_ponto1, novo_ponto2)
 
@@ -163,7 +163,7 @@ class GeometricShapeApp:
         try:
             novo_ponto = Point.criar_ponto()
         except ValueError as e:
-            print("Erro ao adicionar ponto:", e)
+            print(f"Erro ao mover forma: {e}")
             return
         self.controller.mover_forma(index, novo_ponto)
 
