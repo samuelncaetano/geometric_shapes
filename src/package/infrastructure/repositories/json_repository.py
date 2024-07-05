@@ -1,3 +1,4 @@
+# pylint: disable = W1514, R1705
 import json
 from pathlib import Path
 from src.package import Point, LineSegment, Rectangle, Circle, Triangle, IRepository
@@ -11,11 +12,11 @@ class JsonRepository(IRepository):
         self.load()
 
     def load(self):
-        with self.file_path.open('r') as file:
+        with self.file_path.open("r") as file:
             self.items = json.load(file)
 
     def save(self):
-        with self.file_path.open('w') as file:
+        with self.file_path.open("w") as file:
             json.dump(self.items, file)
 
     def add(self, item):
@@ -38,16 +39,16 @@ class JsonRepository(IRepository):
         return None
 
     def dict_to_object(self, obj_dict):
-        shape_type = obj_dict['type']
-        if shape_type == 'Point':
+        shape_type = obj_dict["type"]
+        if shape_type == "Point":
             return Point.from_dict(obj_dict)
-        elif shape_type == 'LineSegment':
+        elif shape_type == "LineSegment":
             return LineSegment.from_dict(obj_dict)
-        elif shape_type == 'Circle':
+        elif shape_type == "Circle":
             return Circle.from_dict(obj_dict)
-        elif shape_type == 'Rectangle':
+        elif shape_type == "Rectangle":
             return Rectangle.from_dict(obj_dict)
-        elif shape_type == 'Triangle':
+        elif shape_type == "Triangle":
             return Triangle.from_dict(obj_dict)
         else:
             raise ValueError(f"Tipo de forma desconhecido: {shape_type}")
