@@ -1,6 +1,6 @@
 @startuml class_diagram
 skinparam classAttributeIconSize 0
-skinparam groupInheritance 4
+skinparam groupInheritance 1
 
 abstract GeometricShape {}
 class Point {}
@@ -36,28 +36,27 @@ GeometricShape <|-- Triangle
 IRepository <|.. InMemoryRepository
 
 ' Composition (Composição)
-Point --* LineSegment
-Point --* Circle
-Point --* Rectangle
-Point --* Triangle
-GeometricShapeController *-- CreateShape
-GeometricShapeController *-- MoveShape
-GeometricShapeController *-- CalculateMetrics
+Point --* LineSegment : "1..2"
+Point --* Circle : "1..1"
+Point --* Rectangle : "1..4"
+Point --* Triangle : "1..3"
+GeometricShapeController *-- CreateShape : "1..1"
+GeometricShapeController *-- MoveShape : "1..1"
+GeometricShapeController *-- CalculateMetrics : "1..1"
 
 ' Aggregation (Agregação)
-ShapeFactory o-- CreateShape
-InMemoryRepository o-- CreateShape
-InMemoryRepository o-- MoveShape
-InMemoryRepository o-- CalculateMetrics
+ShapeFactory o-- CreateShape : "0..1"
+InMemoryRepository o-- CreateShape : "0..1"
+InMemoryRepository o-- MoveShape : "0..1"
+InMemoryRepository o-- CalculateMetrics : "0..1"
 
 ' Association (Associação)
-GeometricShapeApp --> GeometricShapeController
-GeometricShapeApp --> GeometricShapeView
-Point --> ShapeFactory
-LineSegment --> ShapeFactory
-Circle --> ShapeFactory
-Rectangle --> ShapeFactory
-Triangle --> ShapeFactory
-
+GeometricShapeApp --> GeometricShapeController : "1..1"
+GeometricShapeApp --> GeometricShapeView : "1..1"
+Point --> ShapeFactory : "0..*"
+LineSegment --> ShapeFactory : "0..*"
+Circle --> ShapeFactory : "0..*"
+Rectangle --> ShapeFactory : "0..*"
+Triangle --> ShapeFactory : "0..*"
 
 @enduml
