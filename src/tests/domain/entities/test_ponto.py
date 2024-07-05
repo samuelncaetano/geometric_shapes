@@ -83,6 +83,18 @@ def test_str_ponto(origem, ponto):
     assert str(ponto) == message_ponto
 
 
+def test_point_to_dict(ponto):
+    expected = {"type": "Point", "x": 3, "y": 4}
+    assert ponto.to_dict() == expected
+
+
+def test_point_from_dict():
+    data = {"type": "Point", "x": 3, "y": 4}
+    point = Point.from_dict(data)
+    assert point.get_x() == 3
+    assert point.get_y() == 4
+
+
 def test_criar_ponto():
     user_input = "3.0 4.0\n"
 

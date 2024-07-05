@@ -100,6 +100,32 @@ def test_str_triangulo(triangulo):
     assert str(triangulo) == message
 
 
+def test_triangle_to_dict(triangulo):
+    expected = {
+        "type": "Triangle",
+        "ponto1": {"type": "Point", "x": 0, "y": 0},
+        "ponto2": {"type": "Point", "x": 3, "y": 0},
+        "ponto3": {"type": "Point", "x": 0, "y": 4},
+    }
+    assert triangulo.to_dict() == expected
+
+
+def test_triangle_from_dict():
+    data = {
+        "type": "Triangle",
+        "ponto1": {"type": "Point", "x": 0, "y": 0},
+        "ponto2": {"type": "Point", "x": 3, "y": 0},
+        "ponto3": {"type": "Point", "x": 0, "y": 4},
+    }
+    triangle = Triangle.from_dict(data)
+    assert triangle.get_ponto1().get_x() == 0
+    assert triangle.get_ponto1().get_y() == 0
+    assert triangle.get_ponto2().get_x() == 3
+    assert triangle.get_ponto2().get_y() == 0
+    assert triangle.get_ponto3().get_x() == 0
+    assert triangle.get_ponto3().get_y() == 4
+
+
 def test_criar_triangulo_valido():
     user_input = ["0 0", "3 0", "0 4"]
     with patch("builtins.input", side_effect=user_input):
