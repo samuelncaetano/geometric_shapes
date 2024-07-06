@@ -7,6 +7,7 @@ class GeometricShapeView:
         print("\n### Menu ###")
         print("1. Adicionar Forma")
         print("2. Usar os Métodos das formas")
+        print("3. Remover Forma Geométrica")
         print("0. Sair")
 
     @staticmethod
@@ -53,3 +54,9 @@ class GeometricShapeView:
     def mostrar_resultado(resultado, mensagem):
         if resultado is not None:
             print(f"{mensagem}: {resultado}")
+
+    @staticmethod
+    def mostrar_menu_remover_forma():
+        print("\n### Menu ###")
+        print("0. Retorna ao menu principal")
+        return int(input("Digite o índice da forma geométrica: ")) - 1
