@@ -5,10 +5,10 @@ from src.package import CalculateMetrics, CreateShape, MoveShape, ShapeFactory
 class GeometricShapeController:
     def __init__(self, repository):
         self.factory = ShapeFactory()
-        self.create_shape_use_case = CreateShape(repository, self.factory)
-        self.move_shape_use_case = MoveShape(repository)
-        self.calculate_metrics_use_case = CalculateMetrics(repository)
         self.repository = repository
+        self.create_shape_use_case = CreateShape(self.repository, self.factory)
+        self.move_shape_use_case = MoveShape(self.repository)
+        self.calculate_metrics_use_case = CalculateMetrics(self.repository)
 
     def adicionar_forma_geometrica(self, tipo_forma):
         self.create_shape_use_case.execute(tipo_forma)
