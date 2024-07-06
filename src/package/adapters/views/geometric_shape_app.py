@@ -27,7 +27,7 @@ class GeometricShapeApp:
                 return JsonRepository(file_path)
             elif opcao_repositorio == "0":
                 print("Encerrando o programa.")
-                break
+                exit()
             else:
                 print("Opção inválida.")
 
