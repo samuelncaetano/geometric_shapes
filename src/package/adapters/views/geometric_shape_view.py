@@ -1,3 +1,4 @@
+# pylint: disable = R1705
 import os
 
 

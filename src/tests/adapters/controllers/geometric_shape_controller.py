@@ -26,13 +26,8 @@ def repository():
 
 
 @pytest.fixture
-def factory():
-    return ShapeFactory()
-
-
-@pytest.fixture
-def controller(repository, factory):
-    return GeometricShapeController(repository, factory)
+def controller(repository):
+    return GeometricShapeController(repository)
 
 
 def test_instanciar_controller(controller):

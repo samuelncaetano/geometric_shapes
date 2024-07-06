@@ -1,4 +1,4 @@
-# pylint: disable = R1723, E1111, E1101
+# pylint: disable = R1723, E1111, E1101, R1705, R1710
 from src.package.adapters.controllers.geometric_shape_controller import (
     GeometricShapeController,
 )
@@ -61,8 +61,7 @@ class GeometricShapeApp:
             elif opcao_forma == "1":
                 self.__adicionar_forma(self.controller.adicionar_ponto)
             elif opcao_forma == "2":
-                self.__adicionar_forma(
-                    self.controller.adicionar_segmento_de_reta)
+                self.__adicionar_forma(self.controller.adicionar_segmento_de_reta)
             elif opcao_forma == "3":
                 self.__adicionar_forma(self.controller.adicionar_circulo)
             elif opcao_forma == "4":
@@ -92,15 +91,13 @@ class GeometricShapeApp:
                 formas = self.controller.listar_formas_geometricas()
                 self.__listar_formas(formas)
             elif opcao_metodo == "1":
-                self.__calcular_e_mostrar(
-                    self.controller.calcular_area, "Área")
+                self.__calcular_e_mostrar(self.controller.calcular_area, "Área")
             elif opcao_metodo == "2":
                 self.__calcular_e_mostrar(
                     self.controller.calcular_perimetro, "Perímetro"
                 )
             elif opcao_metodo == "3":
-                self.__calcular_e_mostrar(
-                    self.controller.distancia_origem, "Origem")
+                self.__calcular_e_mostrar(self.controller.distancia_origem, "Origem")
             elif opcao_metodo == "4":
                 self.__calcular_e_mostrar_distancia_pontos()
             elif opcao_metodo == "5":
