@@ -38,6 +38,13 @@ class GeometricShapeView:
         print("2. E um seguimento de reta")
 
     @staticmethod
+    def mostrar_menu_repositorios():
+        print("\n### Selecione o Tipo de Repositório ###")
+        print("1. Repositório em Memória")
+        print("2. Repositório em JSON")
+        print("0. Sair")
+
+    @staticmethod
     def ler_opcao():
         return input("Escolha uma opção: ")
 

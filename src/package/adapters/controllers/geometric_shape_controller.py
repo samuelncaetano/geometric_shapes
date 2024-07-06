@@ -1,10 +1,11 @@
 # pylint: disable=R1710
-from src.package import CalculateMetrics, CreateShape, MoveShape
+from src.package import CalculateMetrics, CreateShape, MoveShape, ShapeFactory
 
 
 class GeometricShapeController:
-    def __init__(self, repository, factory):
-        self.create_shape_use_case = CreateShape(repository, factory)
+    def __init__(self, repository):
+        self.factory = ShapeFactory()
+        self.create_shape_use_case = CreateShape(repository, self.factory)
         self.move_shape_use_case = MoveShape(repository)
         self.calculate_metrics_use_case = CalculateMetrics(repository)
         self.repository = repository
