@@ -82,4 +82,4 @@ class GeometricShapeView:
     def mostrar_menu_remover_forma():
         print("\n### Menu ###")
         print("0. Retorna ao menu principal")
-        return int(input("Digite o índice da forma geométrica: ")) - 1
+        return int(input("\nDigite o índice da forma geométrica: ")) - 1

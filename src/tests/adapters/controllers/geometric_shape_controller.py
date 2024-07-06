@@ -3,7 +3,6 @@ from unittest.mock import patch
 import pytest
 from src.package import (
     InMemoryRepository,
-    ShapeFactory,
     Point,
     LineSegment,
     Circle,
