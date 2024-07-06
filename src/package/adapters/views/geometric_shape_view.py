@@ -46,7 +46,15 @@ class GeometricShapeView:
 
     @staticmethod
     def ler_opcao():
-        return input("Escolha uma opção: ")
+        while True:
+            print("\nAperte Enter para limpar o terminal")
+            opcao = input("Escolha uma opção: ")
+            if opcao.isdigit():
+                return opcao
+            elif opcao.strip() == "":
+                return ""
+            else:
+                print("Por favor, digite apenas números.")
 
     @staticmethod
     def limpar_tela():
@@ -55,7 +63,14 @@ class GeometricShapeView:
     @staticmethod
     def obter_indice_forma_geometrica():
         print("\n### Menu ###")
-        return int(input("Digite o índice da forma geométrica: ")) - 1
+        while True:
+            opcao = input("Digite o índice da forma geométrica: ")
+            if opcao.isdigit():
+                return int(opcao) - 1
+            elif opcao.strip() == "":
+                return ""
+            else:
+                print("Por favor, digite apenas números.")
 
     @staticmethod
     def mostrar_resultado(resultado, mensagem):
