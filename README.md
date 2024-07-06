@@ -15,12 +15,13 @@
       3. [Verificar Cobertura do Código](#verificar-cobertura-do-código)
       4. [Gerar Relatório HTML](#gerar-relatório-html)
       5. [Visualizar Relatório HTML](#visualizar-relatório-html)
-3. [Arquitetura](#arquitetura)
+3. [Documentação](#documentação)
+4. [Arquitetura](#arquitetura)
    1. [Componentes Principais](#componentes-principais)
    2. [Estrutura de Diretórios](#estrutura-de-diretórios)
-4. [Princípios de Projeto](#princípios-de-projeto)
-5. [Padrões de Projeto](#padrões-de-projeto)
-6. [Detalhes das Implementações](#detalhes-das-implementações)
+5. [Princípios de Projeto](#princípios-de-projeto)
+6. [Padrões de Projeto](#padrões-de-projeto)
+7. [Detalhes das Implementações](#detalhes-das-implementações)
 
 ## Introdução
 
@@ -129,6 +130,10 @@ coverage html
 ### Visualizar Relatório HTML
 
 Abra o arquivo `index.html` no diretório htmlcov em seu navegador para uma análise detalhada da cobertura de código.
+
+## Documentação
+
+Existem dois diagramas de classe, um relacionado às relações de classes e outro que apresenta os atributos e métodos de cada classe do projeto, e os casos de uso, ambos estão disponíveis na pasta. `doc`
 
 ## Arquitetura
 
