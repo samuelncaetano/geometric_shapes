@@ -43,16 +43,16 @@ Point --* Triangle : "1..3"
 GeometricShapeController *-- CreateShape : "1..1"
 GeometricShapeController *-- MoveShape : "1..1"
 GeometricShapeController *-- CalculateMetrics : "1..1"
+GeometricShapeApp --* GeometricShapeView : "1..1"
+GeometricShapeApp --* GeometricShapeController : "1..1"
 
 ' Aggregation (Agregação)
-ShapeFactory o-- CreateShape : "0..1"
-InMemoryRepository o-- CreateShape : "0..1"
-InMemoryRepository o-- MoveShape : "0..1"
-InMemoryRepository o-- CalculateMetrics : "0..1"
+ShapeFactory o-- CreateShape : "1..1"
+InMemoryRepository o-- CreateShape : "1..1"
+InMemoryRepository o-- MoveShape : "1..1"
+InMemoryRepository o-- CalculateMetrics : "1..1"
 
 ' Association (Associação)
-GeometricShapeApp --> GeometricShapeController : "1..1"
-GeometricShapeApp --> GeometricShapeView : "1..1"
 Point --> ShapeFactory : "0..*"
 LineSegment --> ShapeFactory : "0..*"
 Circle --> ShapeFactory : "0..*"
