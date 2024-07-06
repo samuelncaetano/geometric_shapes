@@ -1,16 +1,35 @@
-# pylint: disable = R1723, E1111, E1101
+# pylint: disable = R1723, E1111, E1101, R1705, R1710
 from src.package.adapters.controllers.geometric_shape_controller import (
     GeometricShapeController,
 )
 from src.package.adapters.views.geometric_shape_view import GeometricShapeView
-from src.package import Point
+from src.package import Point, InMemoryRepository, JsonRepository
 
 
 class GeometricShapeApp:
-    def __init__(self, repository, factory):
-        self.controller = GeometricShapeController(repository, factory)
+    def __init__(self, repository):
+        self.controller = GeometricShapeController(repository)
         self.view = GeometricShapeView()
         self.view.limpar_tela()
+
+    @staticmethod
+    def selecionar_repositorio(file_path):
+        while True:
+            view = GeometricShapeView()
+            view.limpar_tela()
+            view.mostrar_menu_repositorios()
+            opcao_repositorio = view.ler_opcao()
+            view.limpar_tela()
+
+            if opcao_repositorio == "1":
+                return InMemoryRepository()
+            elif opcao_repositorio == "2":
+                return JsonRepository(file_path)
+            elif opcao_repositorio == "0":
+                print("Encerrando o programa.")
+                exit()
+            else:
+                print("Opção inválida.")
 
     def run(self):
         while True:
@@ -24,6 +43,8 @@ class GeometricShapeApp:
                 self.__handle_adicionar_forma()
             elif opcao == "2":
                 self.__handle_metodos_forma()
+            elif opcao == "3":
+                self.__handle_remover_forma()
             elif opcao == "0":
                 print("Encerrando o programa.")
                 break
@@ -167,10 +188,27 @@ class GeometricShapeApp:
             return
         self.controller.mover_forma(index, novo_ponto)
 
+    def __handle_remover_forma(self):
+        while True:
+            self.view.limpar_tela()
+            formas = self.controller.listar_formas_geometricas()
+            self.__listar_formas(formas)
+            try:
+                index = self.view.mostrar_menu_remover_forma()
+                if index == -1:
+                    break
+                self.controller.remover_forma_geometrica(index)
+            except ValueError as e:
+                print(f"Erro ao remover a forma geométrica: {e}")
+            finally:
+                self.view.limpar_tela()
+                formas = self.controller.listar_formas_geometricas()
+                self.__listar_formas(formas)
+
     def __listar_formas(self, formas):
         if not formas:
-            print("Nenhuma forma geométrica cadastrada.")
+            print("\nNenhuma forma geométrica cadastrada.")
         else:
-            print("### Formas Geométricas ###")
+            print("\n### Formas Geométricas ###")
             for i, forma in enumerate(formas, start=1):
                 print(f"{i}. {forma}")

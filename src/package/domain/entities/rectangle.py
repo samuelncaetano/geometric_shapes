@@ -78,6 +78,21 @@ class Rectangle(GeometricShape):
     def __str__(self):
         return f"Retângulo(Centro: {self.__centro}, Largura: {self.__largura}, Altura: {self.__altura})"
 
+    def to_dict(self):
+        return {
+            "type": "Rectangle",
+            "centro": self.__centro.to_dict(),
+            "largura": self.__largura,
+            "altura": self.__altura,
+        }
+
+    @staticmethod
+    def from_dict(data):
+        centro = Point.from_dict(data["centro"])
+        largura = data["largura"]
+        altura = data["altura"]
+        return Rectangle(centro, largura, altura)
+
     @staticmethod
     def criar_retangulo():
         x, y = map(

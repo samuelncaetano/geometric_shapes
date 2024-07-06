@@ -1,8 +1,9 @@
-from src.package import GeometricShapeApp, InMemoryRepository, ShapeFactory
+from pathlib import Path
+from src.package import GeometricShapeApp
 
 
 if __name__ == "__main__":
-    repository = InMemoryRepository()
-    factory = ShapeFactory()
-    app = GeometricShapeApp(repository, factory)
+    file_path = Path(__file__).parent / "shapes.json"
+    repository = GeometricShapeApp.selecionar_repositorio(file_path)
+    app = GeometricShapeApp(repository)
     app.run()

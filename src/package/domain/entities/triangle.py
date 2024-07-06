@@ -82,6 +82,21 @@ class Triangle(GeometricShape):
     def __str__(self):
         return f"Triângulo(Centro: {self.calcular_centro()}, Ponto1: {self.__ponto1}, Ponto2: {self.__ponto2}, Ponto3: {self.__ponto3})"
 
+    def to_dict(self):
+        return {
+            "type": "Triangle",
+            "ponto1": self.__ponto1.to_dict(),
+            "ponto2": self.__ponto2.to_dict(),
+            "ponto3": self.__ponto3.to_dict(),
+        }
+
+    @staticmethod
+    def from_dict(data):
+        ponto1 = Point.from_dict(data["ponto1"])
+        ponto2 = Point.from_dict(data["ponto2"])
+        ponto3 = Point.from_dict(data["ponto3"])
+        return Triangle(ponto1, ponto2, ponto3)
+
     @staticmethod
     def formar_triangulo(ponto1, ponto2, ponto3):
         def calcular_area(p1, p2, p3):

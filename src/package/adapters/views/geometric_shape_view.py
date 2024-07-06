@@ -1,3 +1,4 @@
+# pylint: disable = R1705
 import os
 
 
@@ -7,6 +8,7 @@ class GeometricShapeView:
         print("\n### Menu ###")
         print("1. Adicionar Forma")
         print("2. Usar os Métodos das formas")
+        print("3. Remover Forma Geométrica")
         print("0. Sair")
 
     @staticmethod
@@ -37,8 +39,23 @@ class GeometricShapeView:
         print("2. E um seguimento de reta")
 
     @staticmethod
+    def mostrar_menu_repositorios():
+        print("\n### Selecione o Tipo de Repositório ###")
+        print("1. Repositório em Memória")
+        print("2. Repositório em JSON")
+        print("0. Sair")
+
+    @staticmethod
     def ler_opcao():
-        return input("Escolha uma opção: ")
+        while True:
+            print("\nAperte Enter para limpar o terminal")
+            opcao = input("Escolha uma opção: ")
+            if opcao.isdigit():
+                return opcao
+            elif opcao.strip() == "":
+                return ""
+            else:
+                print("Por favor, digite apenas números.")
 
     @staticmethod
     def limpar_tela():
@@ -47,9 +64,22 @@ class GeometricShapeView:
     @staticmethod
     def obter_indice_forma_geometrica():
         print("\n### Menu ###")
-        return int(input("Digite o índice da forma geométrica: ")) - 1
+        while True:
+            opcao = input("Digite o índice da forma geométrica: ")
+            if opcao.isdigit():
+                return int(opcao) - 1
+            elif opcao.strip() == "":
+                return ""
+            else:
+                print("Por favor, digite apenas números.")
 
     @staticmethod
     def mostrar_resultado(resultado, mensagem):
         if resultado is not None:
             print(f"{mensagem}: {resultado}")
+
+    @staticmethod
+    def mostrar_menu_remover_forma():
+        print("\n### Menu ###")
+        print("0. Retorna ao menu principal")
+        return int(input("\nDigite o índice da forma geométrica: ")) - 1

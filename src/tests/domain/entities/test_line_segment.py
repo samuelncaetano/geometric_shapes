@@ -71,6 +71,28 @@ def test_str_reta(reta):
     assert str(reta) == message
 
 
+def test_line_segment_to_dict(reta):
+    expected = {
+        "type": "LineSegment",
+        "ponto1": {"type": "Point", "x": 1, "y": 1},
+        "ponto2": {"type": "Point", "x": 4, "y": 4},
+    }
+    assert reta.to_dict() == expected
+
+
+def test_line_segment_from_dict():
+    data = {
+        "type": "LineSegment",
+        "ponto1": {"type": "Point", "x": 1, "y": 1},
+        "ponto2": {"type": "Point", "x": 4, "y": 4},
+    }
+    line_segment = LineSegment.from_dict(data)
+    assert line_segment.get_ponto1().get_x() == 1
+    assert line_segment.get_ponto1().get_y() == 1
+    assert line_segment.get_ponto2().get_x() == 4
+    assert line_segment.get_ponto2().get_y() == 4
+
+
 def test_criar_reta():
     user_input = ["0 0", "2 2"]
 

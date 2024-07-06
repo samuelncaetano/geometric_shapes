@@ -31,6 +31,13 @@ class Point(GeometricShape):
     def __str__(self):
         return f"Ponto({self.__x}, {self.__y})"
 
+    def to_dict(self):
+        return {"type": "Point", "x": self.__x, "y": self.__y}
+
+    @staticmethod
+    def from_dict(data):
+        return Point(data["x"], data["y"])
+
     @staticmethod
     def criar_ponto():
         x, y = map(

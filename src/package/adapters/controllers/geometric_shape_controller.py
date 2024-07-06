@@ -1,18 +1,20 @@
 # pylint: disable=R1710
-from src.package import CalculateMetrics, CreateShape, MoveShape
+from src.package import CalculateMetrics, CreateShape, MoveShape, ShapeFactory
 
 
 class GeometricShapeController:
-    def __init__(self, repository, factory):
-        self.create_shape_use_case = CreateShape(repository, factory)
-        self.move_shape_use_case = MoveShape(repository)
-        self.calculate_metrics_use_case = CalculateMetrics(repository)
+    def __init__(self, repository):
+        self.factory = ShapeFactory()
+        self.repository = repository
+        self.create_shape_use_case = CreateShape(self.repository, self.factory)
+        self.move_shape_use_case = MoveShape(self.repository)
+        self.calculate_metrics_use_case = CalculateMetrics(self.repository)
 
     def adicionar_forma_geometrica(self, tipo_forma):
         self.create_shape_use_case.execute(tipo_forma)
 
     def listar_formas_geometricas(self):
-        return self.create_shape_use_case.repository.list_all()
+        return self.repository.list_all()
 
     def calcular_area(self, index):
         return self.calculate_metrics_use_case.calcular_area(index)
@@ -34,6 +36,9 @@ class GeometricShapeController:
 
     def mover_segmento_de_reta(self, index, novo_ponto1, novo_ponto2):
         self.move_shape_use_case.execute(index, novo_ponto1, novo_ponto2)
+
+    def remover_forma_geometrica(self, index):
+        self.repository.remove(index)
 
     def adicionar_ponto(self):
         self.adicionar_forma_geometrica("ponto")

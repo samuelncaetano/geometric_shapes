@@ -4,5 +4,4 @@
 venv
 .vscode
 .coverage
-diagram_examples
-TODO.md
+shapes.json

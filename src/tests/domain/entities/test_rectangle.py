@@ -97,6 +97,30 @@ def test_str_retangulo(retangulo):
     assert str(retangulo) == message
 
 
+def test_rectangle_to_dict(retangulo):
+    expected = {
+        "type": "Rectangle",
+        "centro": {"type": "Point", "x": 2, "y": 2},
+        "largura": 4,
+        "altura": 4,
+    }
+    assert retangulo.to_dict() == expected
+
+
+def test_rectangle_from_dict():
+    data = {
+        "type": "Rectangle",
+        "centro": {"type": "Point", "x": 2, "y": 2},
+        "largura": 4,
+        "altura": 4,
+    }
+    rectangle = Rectangle.from_dict(data)
+    assert rectangle.get_centro().get_x() == 2
+    assert rectangle.get_centro().get_y() == 2
+    assert rectangle.get_largura() == 4
+    assert rectangle.get_altura() == 4
+
+
 def test_criar_retangulo():
     user_input = ["2 2", "4", "4"]
 

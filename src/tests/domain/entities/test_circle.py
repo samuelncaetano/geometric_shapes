@@ -69,6 +69,23 @@ def test_str_circulo(circulo):
     assert str(circulo) == message
 
 
+def test_circle_to_dict(circulo):
+    expected = {
+        "type": "Circle",
+        "centro": {"type": "Point", "x": 0, "y": 0},
+        "raio": 4,
+    }
+    assert circulo.to_dict() == expected
+
+
+def test_circle_from_dict():
+    data = {"type": "Circle", "centro": {"type": "Point", "x": 0, "y": 0}, "raio": 4}
+    circle = Circle.from_dict(data)
+    assert circle.get_centro().get_x() == 0
+    assert circle.get_centro().get_y() == 0
+    assert circle.get_raio() == 4
+
+
 def test_criar_circulo():
     user_input = ["0 0", "4"]
 
