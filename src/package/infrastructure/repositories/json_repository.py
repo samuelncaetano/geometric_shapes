@@ -38,6 +38,13 @@ class JsonRepository(IRepository):
             return self.dict_to_object(removed_item)
         return None
 
+    def update(self, index, item):
+        if 0 <= index < len(self.items):
+            self.items[index] = item.to_dict()
+            self.save()
+            return self.dict_to_object(self.items[index])
+        return None
+
     def dict_to_object(self, obj_dict):
         shape_type = obj_dict["type"]
         if shape_type == "Point":

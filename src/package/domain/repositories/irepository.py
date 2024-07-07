@@ -17,3 +17,7 @@ class IRepository(ABC):
     @abstractmethod
     def remove(self, index):
         pass
+
+    @abstractmethod
+    def update(self, index, item):
+        pass

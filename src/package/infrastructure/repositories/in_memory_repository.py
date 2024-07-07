@@ -20,3 +20,9 @@ class InMemoryRepository(IRepository):
         if 0 <= index < len(self.__items):
             return self.__items.pop(index)
         return None
+
+    def update(self, index, item):
+        if 0 <= index < len(self.__items):
+            self.__items[index] = item
+            return self.__items[index]
+        return None
