@@ -1,4 +1,5 @@
 # pylint: disable = R1723, E1111, E1101, R1705, R1710
+import sys
 from src.package.adapters.controllers.geometric_shape_controller import (
     GeometricShapeController,
 )
@@ -27,7 +28,7 @@ class GeometricShapeApp:
                 return JsonRepository(file_path)
             elif opcao_repositorio == "0":
                 print("Encerrando o programa.")
-                exit()
+                sys.exit()
             else:
                 print("Opção inválida.")
 
