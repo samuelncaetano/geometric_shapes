@@ -1,7 +1,7 @@
 # pylint: disable = W0613
 from unittest.mock import patch
-import pytest
 from pathlib import Path
+import pytest
 from src.package import (
     InMemoryRepository,
     JsonRepository,
@@ -56,36 +56,31 @@ class TestMemoryController:
     def test_adicionar_ponto(self, mock_input, memory_controller):
         memory_controller.adicionar_ponto()
         assert len(memory_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            memory_controller.listar_formas_geometricas()[0], Point)
+        assert isinstance(memory_controller.listar_formas_geometricas()[0], Point)
 
     @patch("builtins.input", side_effect=reta)
     def test_adicionar_segmento_de_reta(self, mock_input, memory_controller):
         memory_controller.adicionar_segmento_de_reta()
         assert len(memory_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            memory_controller.listar_formas_geometricas()[0], LineSegment)
+        assert isinstance(memory_controller.listar_formas_geometricas()[0], LineSegment)
 
     @patch("builtins.input", side_effect=circulo)
     def test_adicionar_circulo(self, mock_input, memory_controller):
         memory_controller.adicionar_circulo()
         assert len(memory_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            memory_controller.listar_formas_geometricas()[0], Circle)
+        assert isinstance(memory_controller.listar_formas_geometricas()[0], Circle)
 
     @patch("builtins.input", side_effect=retangulo)
     def test_adicionar_retangulo(self, mock_input, memory_controller):
         memory_controller.adicionar_retangulo()
         assert len(memory_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            memory_controller.listar_formas_geometricas()[0], Rectangle)
+        assert isinstance(memory_controller.listar_formas_geometricas()[0], Rectangle)
 
     @patch("builtins.input", side_effect=triangulo)
     def test_adicionar_triangulo(self, mock_input, memory_controller):
         memory_controller.adicionar_triangulo()
         assert len(memory_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            memory_controller.listar_formas_geometricas()[0], Triangle)
+        assert isinstance(memory_controller.listar_formas_geometricas()[0], Triangle)
 
     @patch("builtins.input", return_value=ponto)
     def test_calcular_area(self, mock_input, memory_controller):
@@ -136,36 +131,31 @@ class TestJsonController:
     def test_adicionar_ponto(self, mock_input, json_controller):
         json_controller.adicionar_ponto()
         assert len(json_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            json_controller.listar_formas_geometricas()[0], Point)
+        assert isinstance(json_controller.listar_formas_geometricas()[0], Point)
 
     @patch("builtins.input", side_effect=reta)
     def test_adicionar_segmento_de_reta(self, mock_input, json_controller):
         json_controller.adicionar_segmento_de_reta()
         assert len(json_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            json_controller.listar_formas_geometricas()[0], LineSegment)
+        assert isinstance(json_controller.listar_formas_geometricas()[0], LineSegment)
 
     @patch("builtins.input", side_effect=circulo)
     def test_adicionar_circulo(self, mock_input, json_controller):
         json_controller.adicionar_circulo()
         assert len(json_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            json_controller.listar_formas_geometricas()[0], Circle)
+        assert isinstance(json_controller.listar_formas_geometricas()[0], Circle)
 
     @patch("builtins.input", side_effect=retangulo)
     def test_adicionar_retangulo(self, mock_input, json_controller):
         json_controller.adicionar_retangulo()
         assert len(json_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            json_controller.listar_formas_geometricas()[0], Rectangle)
+        assert isinstance(json_controller.listar_formas_geometricas()[0], Rectangle)
 
     @patch("builtins.input", side_effect=triangulo)
     def test_adicionar_triangulo(self, mock_input, json_controller):
         json_controller.adicionar_triangulo()
         assert len(json_controller.listar_formas_geometricas()) == 1
-        assert isinstance(
-            json_controller.listar_formas_geometricas()[0], Triangle)
+        assert isinstance(json_controller.listar_formas_geometricas()[0], Triangle)
 
     @patch("builtins.input", return_value=ponto)
     def test_calcular_area(self, mock_input, json_controller):
