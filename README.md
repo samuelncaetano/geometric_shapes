@@ -222,7 +222,7 @@ Métodos `to_dict` e `from_dict` são implementados para conversão para e a par
 
 ### Repositório
 
-`InMemoryRepository` implementa `IRepository` para gerenciar a persistência em memória. Métodos de manipulação de dados (`add`, `list_all`, `get`, `remove`) são fornecidos.
+`InMemoryRepository` implementa `IRepository` para gerenciar a persistência em memória. Métodos de manipulação de dados (`add`, `list_all`, `get`, `remove`, `update`) são fornecidos.
 
 ### Casos de Uso
 
