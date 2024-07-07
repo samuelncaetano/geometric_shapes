@@ -5,14 +5,12 @@ class MoveShape:
 
     def execute(self, index, novo_ponto, novo_ponto2=None):
         forma = self.repository.get(index)
-        if forma is None:
-            raise ValueError("Forma geométrica não encontrada.")
-
-        if novo_ponto2 is not None and hasattr(forma, "mover"):
-            forma.mover(novo_ponto, novo_ponto2)
-        elif hasattr(forma, "mover"):
-            forma.mover(novo_ponto)
-        else:
-            return None
+        if forma is not None:
+            if novo_ponto2 is not None and hasattr(forma, "mover"):
+                forma.mover(novo_ponto, novo_ponto2)
+            elif hasattr(forma, "mover"):
+                forma.mover(novo_ponto)
+            else:
+                return None
 
         self.repository.update(index, forma)
