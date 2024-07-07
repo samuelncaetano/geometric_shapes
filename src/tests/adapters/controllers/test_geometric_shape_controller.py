@@ -122,6 +122,16 @@ class TestMemoryController:
         assert forma.get_ponto1().get_x() == 1 and forma.get_ponto1().get_y() == 1
         assert forma.get_ponto2().get_x() == 4 and forma.get_ponto2().get_y() == 4
 
+    @patch("builtins.input", return_value=ponto)
+    def test_remover_forma_geometrica(self, mock_input, memory_controller):
+        memory_controller.adicionar_ponto()
+        formas = memory_controller.listar_formas_geometricas()
+        assert len(formas) == 1
+        assert isinstance(formas[0], Point)
+        memory_controller.remover_forma_geometrica(0)
+        formas = memory_controller.listar_formas_geometricas()
+        assert len(formas) == 0
+
 
 class TestJsonController:
     def test_instanciar_controller(self, json_controller):
@@ -196,6 +206,16 @@ class TestJsonController:
         forma = json_controller.listar_formas_geometricas()[0]
         assert forma.get_ponto1().get_x() == 1 and forma.get_ponto1().get_y() == 1
         assert forma.get_ponto2().get_x() == 4 and forma.get_ponto2().get_y() == 4
+
+    @patch("builtins.input", return_value=ponto)
+    def test_remover_forma_geometrica(self, mock_input, json_controller):
+        json_controller.adicionar_ponto()
+        formas = json_controller.listar_formas_geometricas()
+        assert len(formas) == 1
+        assert isinstance(formas[0], Point)
+        json_controller.remover_forma_geometrica(0)
+        formas = json_controller.listar_formas_geometricas()
+        assert len(formas) == 0
 
 
 if __name__ == "__main__":
