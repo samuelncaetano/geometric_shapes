@@ -1,6 +1,4 @@
-from src.package.domain import IRepository, LineSegment
-
-
+# pylint: disable = R1710, R0801
 class MoveShape:
     def __init__(self, repository):
         self.repository = repository
@@ -10,9 +8,11 @@ class MoveShape:
         if forma is None:
             raise ValueError("Forma geométrica não encontrada.")
 
-        if isinstance(forma, LineSegment) and novo_ponto2 is not None:
+        if novo_ponto2 is not None and hasattr(forma, "mover"):
             forma.mover(novo_ponto, novo_ponto2)
-        else:
+        elif hasattr(forma, "mover"):
             forma.mover(novo_ponto)
-            
+        else:
+            return None
+
         self.repository.update(index, forma)
