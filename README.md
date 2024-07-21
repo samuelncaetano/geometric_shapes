@@ -51,13 +51,13 @@ pip3 install virtualenv
 2. Criar um novo ambiente virtual:
 
 ```bash
-virtualenv -p python3 venv
+virtualenv -p python3 .venv
 ```
 
 3. Ativar o ambiente virtual:
 
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 ### Instalar Dependências
