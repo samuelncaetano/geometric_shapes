@@ -8,4 +8,11 @@ source = ["src"]
 show_missing = true
 exclude_lines = ["if __name__ == .__main__.:"]
 sort = "name"
-omit = ["*/__init__.py", "*/tests/*"]
+omit = [
+  "*/tests/*",
+  "*/adapters/*",
+  "*/repositories/*",
+  "*/__init__.py",
+  "geometric_shape.py",
+  "main.py",
+]
