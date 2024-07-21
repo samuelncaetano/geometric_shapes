@@ -46,34 +46,26 @@ def test_calcular_perimetro_retangulo(retangulo):
 
 
 def test_distancia_origem_retangulo(retangulo):
+    ponto_inferior_esquerdo = Point(0, 0)
     ponto_superior_esquerdo = Point(0, 4)
+    ponto_superior_direito = Point(4, 4)
     ponto_inferior_direito = Point(4, 0)
     origem = min(
         ponto_inferior_direito.distancia_origem(),
         ponto_superior_esquerdo.distancia_origem(),
+        ponto_superior_direito.distancia_origem(),
+        ponto_inferior_esquerdo.distancia_origem(),
     )
     assert retangulo.distancia_origem() == origem
 
 
 def test_distancia_pontos_retangulo(retangulo):
     ponto = Point(1, 1)
-    ponto_superior_esquerdo = Point(0, 4)
-    ponto_inferior_direito = Point(4, 0)
     distancias = [
-        ponto_inferior_direito.distancia_pontos(ponto),
-        ponto_superior_esquerdo.distancia_pontos(ponto),
-        ponto.distancia_pontos(
-            Point(
-                ponto_inferior_direito.get_x(),
-                ponto_superior_esquerdo.get_y(),
-            )
-        ),
-        ponto.distancia_pontos(
-            Point(
-                ponto_superior_esquerdo.get_x(),
-                ponto_inferior_direito.get_y(),
-            )
-        ),
+        retangulo._Rectangle__ponto_inferior_direito.distancia_pontos(ponto),
+        retangulo._Rectangle__ponto_superior_esquerdo.distancia_pontos(ponto),
+        retangulo._Rectangle__ponto_superior_direito.distancia_pontos(ponto),
+        retangulo._Rectangle__ponto_inferior_esquerdo.distancia_pontos(ponto),
     ]
     assert retangulo.distancia_pontos(ponto) == min(distancias)
 
