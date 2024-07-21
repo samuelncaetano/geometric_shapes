@@ -1,18 +1,24 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: requirements-txt-fixer
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.24.0
     hooks:
       - id: commitizen
       - id: commitizen-branch
-        stages:
-          - push
+        stages: [push]
   - repo: https://github.com/psf/black
     rev: 24.4.0
     hooks:
       - id: black
         language_version: python3
-        stages:
-          - commit
+        stages: [commit]
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.0
     hooks:
@@ -27,14 +33,22 @@ repos:
         entry: pylint
         types:
           - python
-        stages:
-          - commit
+        stages: [commit]
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        language: system
+        entry: pytest -v
+        always_run: false
+        pass_filenames: false
+        stages: [commit]
   - repo: local
     hooks:
       - id: requirements
         name: requirements
-        entry: bash -c ".venv/bin/pip3 freeze > requirements.txt; git add requirements.txt"
         language: system
+        entry: bash -c ".venv/bin/pip3 freeze > requirements.txt; git add requirements.txt"
+        always_run: true
         pass_filenames: false
-        stages:
-          - commit
+        stages: [commit]
