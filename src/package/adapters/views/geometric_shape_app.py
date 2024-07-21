@@ -94,9 +94,7 @@ class GeometricShapeApp:
             elif opcao_metodo == "1":
                 self.__calcular_e_mostrar(self.controller.calcular_area, "Área")
             elif opcao_metodo == "2":
-                self.__calcular_e_mostrar(
-                    self.controller.calcular_perimetro, "Perímetro"
-                )
+                self.__calcular_e_mostrar(self.controller.calcular_perimetro, "Perímetro")
             elif opcao_metodo == "3":
                 self.__calcular_e_mostrar(self.controller.distancia_origem, "Origem")
             elif opcao_metodo == "4":
@@ -134,9 +132,7 @@ class GeometricShapeApp:
         except ValueError as e:
             print("Erro ao verificar se contém ponto:", e)
             return
-        self.view.mostrar_resultado(
-            distancia_pontos, "Distância entre o ponto e a forma geométrica"
-        )
+        self.view.mostrar_resultado(distancia_pontos, "Distância entre o ponto e a forma geométrica")
 
     def __calcular_e_mostrar_contem_ponto(self):
         formas = self.controller.listar_formas_geometricas()

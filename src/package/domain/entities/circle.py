@@ -54,9 +54,7 @@ class Circle(GeometricShape):
     def criar_circulo():
         x, y = map(
             float,
-            input(
-                "Digite as coordenadas x e y do centro do círculo separadas por espaço: "
-            ).split(),
+            input("Digite as coordenadas x e y do centro do círculo separadas por espaço: ").split(),
         )
         raio = float(input("Digite o raio do círculo: "))
         centro = Point(x, y)

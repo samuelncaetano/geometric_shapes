@@ -26,18 +26,10 @@ class Rectangle(GeometricShape):
         centro_x = self.__centro.get_x()
         centro_y = self.__centro.get_y()
 
-        self.__ponto_superior_esquerdo = Point(
-            centro_x - half_largura, centro_y + half_altura
-        )
-        self.__ponto_superior_direito = Point(
-            centro_x + half_largura, centro_y + half_altura
-        )
-        self.__ponto_inferior_esquerdo = Point(
-            centro_x - half_largura, centro_y - half_altura
-        )
-        self.__ponto_inferior_direito = Point(
-            centro_x + half_largura, centro_y - half_altura
-        )
+        self.__ponto_superior_esquerdo = Point(centro_x - half_largura, centro_y + half_altura)
+        self.__ponto_superior_direito = Point(centro_x + half_largura, centro_y + half_altura)
+        self.__ponto_inferior_esquerdo = Point(centro_x - half_largura, centro_y - half_altura)
+        self.__ponto_inferior_direito = Point(centro_x + half_largura, centro_y - half_altura)
 
     def calcular_area(self):
         return self.__largura * self.__altura
@@ -64,12 +56,8 @@ class Rectangle(GeometricShape):
 
     def contem_ponto(self, ponto):
         return (
-            self.__ponto_superior_esquerdo.get_x()
-            <= ponto.get_x()
-            <= self.__ponto_inferior_direito.get_x()
-            and self.__ponto_inferior_direito.get_y()
-            <= ponto.get_y()
-            <= self.__ponto_superior_esquerdo.get_y()
+            self.__ponto_superior_esquerdo.get_x() <= ponto.get_x() <= self.__ponto_inferior_direito.get_x()
+            and self.__ponto_inferior_direito.get_y() <= ponto.get_y() <= self.__ponto_superior_esquerdo.get_y()
         )
 
     def mover(self, novo_ponto):
@@ -98,9 +86,7 @@ class Rectangle(GeometricShape):
     def criar_retangulo():
         x, y = map(
             float,
-            input(
-                "Digite as coordenadas x e y do centro do retângulo separadas por espaço: "
-            ).split(),
+            input("Digite as coordenadas x e y do centro do retângulo separadas por espaço: ").split(),
         )
         largura = float(input("Digite a largura do retângulo: "))
         altura = float(input("Digite a altura do retângulo: "))

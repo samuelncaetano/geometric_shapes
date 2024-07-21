@@ -42,8 +42,6 @@ class Point(GeometricShape):
     def criar_ponto():
         x, y = map(
             float,
-            input(
-                "Digite as coordenadas x e y do ponto separadas por espaço: "
-            ).split(),
+            input("Digite as coordenadas x e y do ponto separadas por espaço: ").split(),
         )
         return Point(x, y)

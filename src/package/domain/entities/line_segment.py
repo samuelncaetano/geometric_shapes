@@ -25,24 +25,16 @@ class LineSegment(GeometricShape):
         # D = |Ax1 + By1 + C| / sqrt(A^2 + B^2)
         A = self.__ponto2.get_y() - self.__ponto1.get_y()
         B = self.__ponto1.get_x() - self.__ponto2.get_x()
-        C = (self.__ponto1.get_x() * self.__ponto2.get_y()) - (
-            self.__ponto2.get_x() * self.__ponto1.get_y()
-        )
+        C = (self.__ponto1.get_x() * self.__ponto2.get_y()) - (self.__ponto2.get_x() * self.__ponto1.get_y())
         return abs((A * ponto.get_x() + B * ponto.get_y() + C) / sqrt(A**2 + B**2))
 
     def contem_ponto(self, ponto):
-        if (ponto.get_x() - self.__ponto1.get_x()) * (
-            self.__ponto2.get_y() - self.__ponto1.get_y()
-        ) == (ponto.get_y() - self.__ponto1.get_y()) * (
-            self.__ponto2.get_x() - self.__ponto1.get_x()
-        ):
-            if min(
+        if (ponto.get_x() - self.__ponto1.get_x()) * (self.__ponto2.get_y() - self.__ponto1.get_y()) == (
+            ponto.get_y() - self.__ponto1.get_y()
+        ) * (self.__ponto2.get_x() - self.__ponto1.get_x()):
+            if min(self.__ponto1.get_x(), self.__ponto2.get_x()) <= ponto.get_x() <= max(
                 self.__ponto1.get_x(), self.__ponto2.get_x()
-            ) <= ponto.get_x() <= max(
-                self.__ponto1.get_x(), self.__ponto2.get_x()
-            ) and min(
-                self.__ponto1.get_y(), self.__ponto2.get_y()
-            ) <= ponto.get_y() <= max(
+            ) and min(self.__ponto1.get_y(), self.__ponto2.get_y()) <= ponto.get_y() <= max(
                 self.__ponto1.get_y(), self.__ponto2.get_y()
             ):
                 return True
