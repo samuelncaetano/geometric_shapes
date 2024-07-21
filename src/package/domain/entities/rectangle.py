@@ -21,13 +21,22 @@ class Rectangle(GeometricShape):
         return self.__altura
 
     def __atualizar_pontos(self):
+        half_largura = self.__largura / 2
+        half_altura = self.__altura / 2
+        centro_x = self.__centro.get_x()
+        centro_y = self.__centro.get_y()
+
         self.__ponto_superior_esquerdo = Point(
-            self.__centro.get_x() - self.__largura / 2,
-            self.__centro.get_y() + self.__altura / 2,
+            centro_x - half_largura, centro_y + half_altura
+        )
+        self.__ponto_superior_direito = Point(
+            centro_x + half_largura, centro_y + half_altura
+        )
+        self.__ponto_inferior_esquerdo = Point(
+            centro_x - half_largura, centro_y - half_altura
         )
         self.__ponto_inferior_direito = Point(
-            self.__centro.get_x() + self.__largura / 2,
-            self.__centro.get_y() - self.__altura / 2,
+            centro_x + half_largura, centro_y - half_altura
         )
 
     def calcular_area(self):
@@ -40,24 +49,16 @@ class Rectangle(GeometricShape):
         return min(
             self.__ponto_inferior_direito.distancia_origem(),
             self.__ponto_superior_esquerdo.distancia_origem(),
+            self.__ponto_superior_direito.distancia_origem(),
+            self.__ponto_inferior_esquerdo.distancia_origem(),
         )
 
     def distancia_pontos(self, ponto):
         distancias = [
             self.__ponto_inferior_direito.distancia_pontos(ponto),
             self.__ponto_superior_esquerdo.distancia_pontos(ponto),
-            ponto.distancia_pontos(
-                Point(
-                    self.__ponto_inferior_direito.get_x(),
-                    self.__ponto_superior_esquerdo.get_y(),
-                )
-            ),
-            ponto.distancia_pontos(
-                Point(
-                    self.__ponto_superior_esquerdo.get_x(),
-                    self.__ponto_inferior_direito.get_y(),
-                )
-            ),
+            self.__ponto_superior_direito.distancia_pontos(ponto),
+            self.__ponto_inferior_esquerdo.distancia_pontos(ponto),
         ]
         return min(distancias)
 
